@@ -11,7 +11,6 @@ public class Player : MonoBehaviour
     private float horizontalInput;
     private Rigidbody rigidbodyComponent;
 
-   // public gameOverScreen gameOverScreen;
     int score = 0;
 
 
@@ -21,21 +20,18 @@ public class Player : MonoBehaviour
     private bool enableInput = true;
 
     /*
-    public void levelClear()
-    {
-        Debug.Log("CLEAR");
-        clear.Setup(score);
-        enableInput = false;
+public void levelClear()
+{
+    Debug.Log("CLEAR");
+    clear.Setup(score);
+    enableInput = false;
 
-    }
+}
 
-    public void GameOver()
-    {
-        gameOverScreen.Setup(score);
-        enableInput = false;
-    }
+   */
 
-    */
+
+ 
 
     // Start is called before the first frame update
     void Start()
@@ -43,8 +39,6 @@ public class Player : MonoBehaviour
         rigidbodyComponent = GetComponent<Rigidbody>();
 
     }
-
-
 
     // Update is called once per frame
     void Update()
@@ -68,7 +62,7 @@ public class Player : MonoBehaviour
     private void FixedUpdate()
     {
 
-        rigidbodyComponent.velocity = new Vector3(horizontalInput, rigidbodyComponent.velocity.y, 0);
+        rigidbodyComponent.velocity = new Vector3(horizontalInput*4, rigidbodyComponent.velocity.y, 0);
 
 
         if (Physics.OverlapSphere(groundCheckTransform.position, 0.1f, playerMask).Length == 0)
@@ -84,13 +78,16 @@ public class Player : MonoBehaviour
             jump = false;
         }
 
+
+
+
     }
 
     private void OnTriggerEnter(Collider other)
     {
    
 
-        if (other.gameObject.layer == 8)
+        if (other.gameObject.layer == 9) 
         {
             //GameOver();
         }
