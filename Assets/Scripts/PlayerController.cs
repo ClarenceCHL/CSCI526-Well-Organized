@@ -23,7 +23,11 @@ public class PlayerController : MonoBehaviour
         // move left
         if (Input.GetKeyDown(KeyCode.LeftArrow))
             moveDir = Vector2.left;
-        
+
+        if (Input.GetKeyDown(KeyCode.UpArrow))
+            moveDir = Vector2.up;
+
+
         // has pressed button left or right
         if (moveDir != Vector2.zero) {
             if (CanMoveInThisDir(moveDir)) {
