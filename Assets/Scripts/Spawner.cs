@@ -15,7 +15,7 @@ public class Spawner : MonoBehaviour
         // Instantiate(objectToSpawn, new Vector3(Random.Range(0, 8), 15, 0), Quaternion.identity);
     }
 
-
+    int boxCount = 0;
     float time = 0;
     // Update is called once per frame
     void Update()
@@ -29,8 +29,9 @@ public class Spawner : MonoBehaviour
         if (time > nextDrop)
         {
             nextDrop = time + dropRate;
-            Instantiate(objectToSpawn, new Vector3(xPos, 15, 0), Quaternion.identity);
-
+            var newBox = Instantiate(objectToSpawn, new Vector3(xPos, 15, 0), Quaternion.identity);
+            newBox.name = "Box#" + boxCount;
+            boxCount++;
         }
     }
 }
