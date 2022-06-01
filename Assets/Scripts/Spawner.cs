@@ -5,7 +5,8 @@ using UnityEngine;
 public class Spawner : MonoBehaviour
 {
 
-    public GameObject objectToSpawn;
+    public GameObject objectToSpawn1;
+    public GameObject objectToSpawn2;
 
     private float dropRate = 2.0f; //drop a box every 2 seconds
     private float nextDrop = 0.0f;
@@ -22,15 +23,24 @@ public class Spawner : MonoBehaviour
     {
         time += Time.deltaTime;
 
-        float xPos = Random.Range(-4, 5);
-
-        xPos -= 0.5f;
 
         if (time > nextDrop)
         {
+            float xPos = Random.Range(-4, 5) - 0.5f;
+
+            int boxType = Random.Range(1, 3);
+
+            if (boxType == 1)
+            {
+                var newBox1 = Instantiate(objectToSpawn1, new Vector3(xPos, 15, 0), Quaternion.identity);
+                newBox1.name = "Box#" + boxCount;
+
+            }else
+            {
+                var newBox2 = Instantiate(objectToSpawn2, new Vector3(xPos, 15, 0), Quaternion.identity);
+                newBox2.name = "Box#" + boxCount;
+            }
             nextDrop = time + dropRate;
-            var newBox = Instantiate(objectToSpawn, new Vector3(xPos, 15, 0), Quaternion.identity);
-            newBox.name = "Box#" + boxCount;
             boxCount++;
         }
     }

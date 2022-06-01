@@ -30,7 +30,7 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            Debug.Log("Space pressed");
+           // Debug.Log("Space pressed");
             jump = true;
         }
 
@@ -60,8 +60,10 @@ public class PlayerController : MonoBehaviour
         CanMoveInThisDir(moveDir);
 
         //if in air 
-        if (!Physics2D.OverlapArea(groundCheckTransform.position, new Vector2(0.1f, 0.1f), detectLayer))
+        if (!Physics2D.OverlapArea(groundCheckTransform.position, new Vector2(groundCheckTransform.position.x+0.8f, groundCheckTransform.position.y+1.0f), detectLayer))
         {
+
+            Debug.Log("IN AIR");
             jump = false;
     
             return;
@@ -89,17 +91,17 @@ public class PlayerController : MonoBehaviour
     /**
     can move only when no obstacle
     */
-    bool CanMoveInThisDir(Vector2 dir)
+    void CanMoveInThisDir(Vector2 dir)
     {
         // detectLayer to avoid hit player
         RaycastHit2D hit = Physics2D.Raycast(transform.position, dir, 1.0f, detectLayer);
-        if (!hit) return true;
-        else
+        if (hit) 
+       
         {
             if (hit.collider.GetComponent<Box>() != null)
-                return hit.collider.GetComponent<Box>().CanMoveInThisDir(dir);
+                 hit.collider.GetComponent<Box>().CanMoveInThisDir(dir);
         }
-        return false;
+      //  return false;
     }
 
 

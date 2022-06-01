@@ -6,39 +6,91 @@ public class Box : MonoBehaviour
 {
 
 
-    
+    [SerializeField] private Transform horizontalCheck;
 
-    public bool CanMoveInThisDir(Vector2 dir) {
+    [SerializeField] private LayerMask sameBoxType;
 
-        bool selfHit = false;
-        //Debug.Log(objectName);
-        // detect if hit some obstacle
-        RaycastHit2D hit = Physics2D.Raycast(transform.position + (Vector3)dir * 0.4f, dir, 0.5f);
+   
+    private ContactFilter2D contact2D;
+   
 
-        if (hit && hit.collider.name == transform.name)
+    public void Start()
+    {
+
+        contact2D.useLayerMask = true;
+        contact2D.layerMask = sameBoxType;
+    }
+
+    public void CanMoveInThisDir(Vector2 dir) {
+
+
+        if(dir != null)
         {
-            selfHit = true;
+            bool selfHit = false;
+
+            // detect if hit some obstacle
+            RaycastHit2D hit = Physics2D.Raycast(transform.position + (Vector3)dir * 0.4f, dir, 0.5f);
+
+            if (hit && hit.collider.name == transform.name)
+            {
+                selfHit = true;
+
+            }
+
+            if (!hit || selfHit)
+            {
+                // no obstacle move in "dir" direction
+                transform.Translate(dir);
+
+            }
         }
 
-        if (!hit || selfHit)
-        {
-            // no obstacle move in "dir" direction
-            transform.Translate(dir);
-            return true;
-        }
-        Debug.Log("HIT:");
-        Debug.Log(hit.collider.name);
-       return false;
-    }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+
     }
 
-    // Update is called once per frame
-    void Update()
+
+    int collideNumber;
+    private Collider2D[] collisionList = new Collider2D[5];
+    bool destroy; 
+
+    private void FixedUpdate()
     {
-        
+        destroy = true; 
+
+
+        collideNumber = Physics2D.OverlapArea(horizontalCheck.position, new Vector2(horizontalCheck.position.x + 2.0f, horizontalCheck.position.y- 0.4f), contact2D, collisionList);
+        {
+
+            if ( collideNumber > 2)  //if left and right are the same box 
+            {
+
+                collideNumber = Physics2D.OverlapArea( new Vector2 (horizontalCheck.position.x -1.0f, horizontalCheck.position.y), new Vector2(horizontalCheck.position.x + 4.0f, horizontalCheck.position.y - 0.4f), contact2D, collisionList);
+
+                for (int i =0; i< collideNumber; i++)
+                {
+                    Rigidbody2D rb = collisionList[i].GetComponent<Rigidbody2D>();
+                    Debug.Log(rb.velocity);
+
+                    if (rb.velocity.y != 0)
+                        destroy = false;    //so box doesn't get destroyed while dropping
+           
+                }
+                if (destroy)
+                {
+                    for (int i = 0; i < collideNumber; i++)
+                    {
+                      
+                        Destroy(collisionList[i].gameObject);
+
+
+                    }
+
+                }
+            }
+        }
+
+
     }
+
+
 }
