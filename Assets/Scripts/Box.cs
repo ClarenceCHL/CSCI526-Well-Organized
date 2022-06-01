@@ -65,16 +65,16 @@ public class Box : MonoBehaviour
 
     private void FixedUpdate()
     {
-        destroy = true; 
+        destroy = true;
 
 
-        collideNumber = Physics2D.OverlapArea(horizontalCheck.position, new Vector2(horizontalCheck.position.x + 2.0f, horizontalCheck.position.y- 0.4f), contact2D, collisionList);
+        collideNumber = Physics2D.OverlapArea(new Vector2(horizontalCheck.position.x - 1.0f, horizontalCheck.position.y), new Vector2(horizontalCheck.position.x + 1.0f, horizontalCheck.position.y - 0.4f), contact2D, collisionList);
         {
 
             if ( collideNumber > 2)  //if left and right are the same box 
             {
 
-                collideNumber = Physics2D.OverlapArea( new Vector2 (horizontalCheck.position.x -1.0f, horizontalCheck.position.y), new Vector2(horizontalCheck.position.x + 4.0f, horizontalCheck.position.y - 0.4f), contact2D, collisionList);
+                collideNumber = Physics2D.OverlapArea( new Vector2 (horizontalCheck.position.x -2.0f, horizontalCheck.position.y), new Vector2(horizontalCheck.position.x + 2.0f, horizontalCheck.position.y - 0.4f), contact2D, collisionList);
 
                 for (int i =0; i< collideNumber; i++)
                 {
