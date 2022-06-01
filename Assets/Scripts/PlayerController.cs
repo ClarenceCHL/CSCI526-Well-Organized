@@ -62,9 +62,10 @@ public class PlayerController : MonoBehaviour
         //if in air 
         if (!Physics2D.OverlapArea(groundCheckTransform.position, new Vector2(groundCheckTransform.position.x+0.8f, groundCheckTransform.position.y+1.0f), detectLayer))
         {
-
+            rb.velocity = new Vector2(horizontalInput * 4, rb.velocity.y);
             Debug.Log("IN AIR");
             jump = false;
+
     
             return;
         }
