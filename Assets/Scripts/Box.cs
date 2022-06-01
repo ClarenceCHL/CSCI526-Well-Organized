@@ -6,6 +6,8 @@ public class Box : MonoBehaviour
 {
 
 
+    public LayerMask detectLayer;
+
     [SerializeField] private Transform horizontalCheck;
 
     [SerializeField] private LayerMask sameBoxType;
@@ -28,8 +30,16 @@ public class Box : MonoBehaviour
         {
             bool selfHit = false;
 
-            // detect if hit some obstacle
+            // detect if hit some obstacle 
             RaycastHit2D hit = Physics2D.Raycast(transform.position + (Vector3)dir * 0.4f, dir, 0.5f);
+            RaycastHit2D upHit = Physics2D.Raycast(transform.position + (Vector3)(Vector2.up) * 0.6f, Vector2.up, 0.5f);
+            
+
+            if (upHit)
+            {
+                Debug.Log("uphit");
+                return;
+            }
 
             if (hit && hit.collider.name == transform.name)
             {
