@@ -21,6 +21,7 @@ public class HeadCheck : MonoBehaviour
         if (other.gameObject.layer == 7)
         {
             GameOver();
+            Timer.instance.EndTimer();
         }
 
     }
