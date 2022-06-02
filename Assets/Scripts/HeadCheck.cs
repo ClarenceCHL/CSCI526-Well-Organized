@@ -17,11 +17,11 @@ public class HeadCheck : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
 
-        Debug.Log("Trigger");
+
         if (other.gameObject.layer == 7)
         {
             GameOver();
-            Debug.Log("Dead");
+            Timer.instance.EndTimer();
         }
 
     }
