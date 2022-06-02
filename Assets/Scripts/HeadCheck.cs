@@ -14,13 +14,14 @@ public class HeadCheck : MonoBehaviour
     }
 
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
 
-
-        if (other.gameObject.layer == 9)
+        Debug.Log("Trigger");
+        if (other.gameObject.layer == 7)
         {
             GameOver();
+            Debug.Log("Dead");
         }
 
     }
