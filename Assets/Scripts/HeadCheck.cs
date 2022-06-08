@@ -14,14 +14,13 @@ public class HeadCheck : MonoBehaviour
     }
 
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerEnter(Collider other)
     {
 
 
-        if (other.gameObject.layer == 7)
+        if (other.gameObject.layer == 9)
         {
             GameOver();
-            Timer.instance.EndTimer();
         }
 
     }

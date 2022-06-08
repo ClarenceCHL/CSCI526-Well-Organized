@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-
+    //TODO: should be moved to GameManager.v
     public GameObject objectToSpawn1;
     public GameObject objectToSpawn2;
 

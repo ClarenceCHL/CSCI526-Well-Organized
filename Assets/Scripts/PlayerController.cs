@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        Timer.instance.BeginTimer();
+
     }
 
     // Update is called once per frame
@@ -60,10 +60,10 @@ public class PlayerController : MonoBehaviour
         CanMoveInThisDir(moveDir);
 
         //if in air 
-        if (!Physics2D.OverlapArea(groundCheckTransform.position, new Vector2(groundCheckTransform.position.x+0.8f, groundCheckTransform.position.y+1.0f), detectLayer))
+        if (!Physics2D.OverlapArea(groundCheckTransform.position, new Vector2(groundCheckTransform.position.x+0.8f, groundCheckTransform.position.y+1.5f), detectLayer))
         {
             rb.velocity = new Vector2(horizontalInput * 4, rb.velocity.y);
-            Debug.Log("IN AIR");
+            //Debug.Log("IN AIR");
             jump = false;
 
     
