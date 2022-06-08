@@ -14,17 +14,25 @@ public class Box : MonoBehaviour
 
    
     private ContactFilter2D contact2D;
-   
+
+    private bool matched;
 
     public void Start()
     {
-
+        
         contact2D.useLayerMask = true;
         contact2D.layerMask = sameBoxType;
+
     }
 
     public void CanMoveInThisDir(Vector2 dir) {
 
+        if (matched) return; //matched boxes waiting to be destroyed can't be pushed
+
+        //return if box is still moving
+        if ( Mathf.Abs(GetComponent<Rigidbody2D>().velocity.y) > 0.1f ) 
+            return; 
+        
 
         if(dir != null)
         {
@@ -55,11 +63,11 @@ public class Box : MonoBehaviour
             }
         }
 
-
     }
 
 
     int collideNumber;
+    int verticalCollideNumber; 
     private Collider2D[] collisionList = new Collider2D[5];
     bool destroy; 
 
@@ -67,35 +75,63 @@ public class Box : MonoBehaviour
     {
         destroy = true;
 
+        //horizontal 
+        collideNumber = Physics2D.OverlapArea(new Vector2(horizontalCheck.position.x - 1.0f, horizontalCheck.position.y), new Vector2(horizontalCheck.position.x + 1.0f, horizontalCheck.position.y - 0.05f), contact2D, collisionList);
 
-        collideNumber = Physics2D.OverlapArea(new Vector2(horizontalCheck.position.x - 1.0f, horizontalCheck.position.y), new Vector2(horizontalCheck.position.x + 1.0f, horizontalCheck.position.y - 0.4f), contact2D, collisionList);
+        if ( collideNumber > 2)  //if left and right are the same box 
         {
 
-            if ( collideNumber > 2)  //if left and right are the same box 
+            collideNumber = Physics2D.OverlapArea( new Vector2 (horizontalCheck.position.x -2.0f, horizontalCheck.position.y), new Vector2(horizontalCheck.position.x + 2.0f, horizontalCheck.position.y - 0.05f), contact2D, collisionList);
+
+            for (int i =0; i< collideNumber; i++)
             {
+                Rigidbody2D rb = collisionList[i].GetComponent<Rigidbody2D>();
+                // Debug.Log(rb.velocity);
 
-                collideNumber = Physics2D.OverlapArea( new Vector2 (horizontalCheck.position.x -2.0f, horizontalCheck.position.y), new Vector2(horizontalCheck.position.x + 2.0f, horizontalCheck.position.y - 0.4f), contact2D, collisionList);
+                if (Mathf.Abs (rb.velocity.y) > 0.1f )
+                    destroy = false;    //so box doesn't get destroyed while dropping      
+            }
 
-                for (int i =0; i< collideNumber; i++)
-                {
-                    Rigidbody2D rb = collisionList[i].GetComponent<Rigidbody2D>();
-                    Debug.Log(rb.velocity);
-
-                    if (rb.velocity.y != 0)
-                        destroy = false;    //so box doesn't get destroyed while dropping
-           
+            if (destroy)
+            {
+                matched = true; 
+                for (int i = 0; i < collideNumber; i++)
+                {      
+                    Destroy(collisionList[i].gameObject, 1.0f);
                 }
-                if (destroy)
+
+            }
+        }
+
+        //vertical
+        verticalCollideNumber  = Physics2D.OverlapArea(new Vector2(horizontalCheck.position.x, horizontalCheck.position.y-1.0f), new Vector2(horizontalCheck.position.x-0.05f, horizontalCheck.position.y + 1.0f), contact2D, collisionList);
+
+        if (verticalCollideNumber > 2)  //if up and down are the same box 
+        {
+
+            collideNumber = Physics2D.OverlapArea(new Vector2(horizontalCheck.position.x, horizontalCheck.position.y-2.0f), new Vector2(horizontalCheck.position.x -0.05f, horizontalCheck.position.y +2.0f), contact2D, collisionList);
+
+            for (int i = 0; i < collideNumber; i++)
+            {
+                Rigidbody2D rb = collisionList[i].GetComponent<Rigidbody2D>();
+                // Debug.Log(rb.velocity);
+
+                if (Mathf.Abs(rb.velocity.y) > 0.1f)
+                    destroy = false;    //so box doesn't get destroyed while dropping      
+            }
+      
+            if (destroy)
+            {
+               
+                for (int i = 0; i < collideNumber; i++)
                 {
-                    for (int i = 0; i < collideNumber; i++)
-                    {
-                      
-                        Destroy(collisionList[i].gameObject);
+                    if (collisionList[i].gameObject != null)  //avoid double deleting
+                    {   
 
-
+                        Destroy(collisionList[i].gameObject, 1.0f);
                     }
-
                 }
+
             }
         }
 
