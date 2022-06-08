@@ -224,7 +224,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6708120188623499523, guid: ee7e276fc202349bfbdfa7b93231880b, type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ee7e276fc202349bfbdfa7b93231880b, type: 3}
@@ -238,7 +238,7 @@ GameObject:
   m_Component:
   - component: {fileID: 380639877}
   - component: {fileID: 380639878}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: HorizontalCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -573,7 +573,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6708120188623499523, guid: ee7e276fc202349bfbdfa7b93231880b, type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ee7e276fc202349bfbdfa7b93231880b, type: 3}
@@ -2429,7 +2429,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2008003798}
   - component: {fileID: 2008003799}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: HorizontalCheck (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
