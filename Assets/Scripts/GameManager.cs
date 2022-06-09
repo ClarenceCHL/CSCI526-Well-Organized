@@ -17,12 +17,12 @@ public class GameManager : MonoBehaviour
 
     //public List<Box> boxList = new List<Box>();
 
-    const int width = 10;
-    const int height = 9;
+    public int width = 10;
+    public int height = 9;
 
     static Box[,] grid;
 
-
+    PlayerController playerController;
 
     private static GameManager _instance;
 
@@ -37,7 +37,6 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
         startPosition();
 
     }
@@ -177,10 +176,18 @@ public class GameManager : MonoBehaviour
     {
         int x = Mathf.RoundToInt(box.transform.position.x), y = Mathf.RoundToInt(box.transform.position.y);
 
+        if(x > width || x < 0 || y > height || y < 0)
+        {
+            return;
+        }
+
         if(x != box.X || y != box.Y)
         {
             grid[x, y] = grid[box.X, box.Y];
             grid[box.X, box.Y] = null;
+            box.X = x;
+            box.Y = y;
+            printGrid();
         }
 
         

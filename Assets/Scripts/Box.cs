@@ -16,7 +16,9 @@ public class Box : MonoBehaviour
     private bool moved;
 
     private ContactFilter2D contact2D;
-    //further use
+
+    private bool matched;
+
     private int _x;
     private int _y;
 
@@ -61,51 +63,26 @@ public class Box : MonoBehaviour
         spawned = true;
         contact2D.useLayerMask = true;
         contact2D.layerMask = sameBoxType;
-    }
-
-   
-
-
-    int collideNumber;
-    private Collider2D[] collisionList = new Collider2D[5];
-    bool destroy; 
-
-    private void FixedUpdate()
-    {
-        if(this.GetComponent<Rigidbody2D>().velocity.y == 0)
-        {
-            if (spawned)
-            {
-                _gameManager.addToGrid(this);
-                _gameManager.updateGrid(this);
-                spawned = false;
-            }
-
-            if (moved)
-            {
-                _gameManager.updateGrid(this);
-                moved = false;  
-            }
-            
-        }
-
 
     }
 
-    public void CanMoveInThisDir(Vector2 dir)
-    {
+    public void CanMoveInThisDir(Vector2 dir) {
 
+        if (matched) return; //matched boxes waiting to be destroyed can't be pushed
 
-        if (dir != null)
+        //return if box is still moving
+        if ( Mathf.Abs(GetComponent<Rigidbody2D>().velocity.y) > 0.1f ) 
+            return; 
+        
+
+        if(dir != null)
         {
             bool selfHit = false;
 
             // detect if hit some obstacle 
             RaycastHit2D hit = Physics2D.Raycast(transform.position + (Vector3)dir * 0.4f, dir, 0.5f);
             RaycastHit2D upHit = Physics2D.Raycast(transform.position + (Vector3)(Vector2.up) * 0.6f, Vector2.up, 0.5f);
-
-            //float x = hit.transform.position.x;
-            //float y = hit.transform.position.y;
+            
 
             if (upHit)
             {
@@ -124,19 +101,117 @@ public class Box : MonoBehaviour
                 // no obstacle move in "dir" direction
                 transform.Translate(dir);
                 moved = true;
-                
-
-                //TODO: Trigger update grid in GameManager
             }
         }
 
-
     }
 
-    public void Move(int newX, int newY)
+    private void Update()
     {
+        
+    }
+
+
+    int collideNumber;
+    int verticalCollideNumber; 
+    private Collider2D[] collisionList = new Collider2D[5];
+    bool destroy; 
+
+    private void FixedUpdate()
+    {
+        if (this.GetComponent<Rigidbody2D>().velocity.y > 0.1f)
+        {
+            moved = true;
+        }
+
+        if (this.GetComponent<Rigidbody2D>().velocity.y == 0.0f)
+        {
+            if (spawned)
+            {
+                _gameManager.addToGrid(this);
+                _gameManager.updateGrid(this);
+                spawned = false;
+                return;
+            }
+
+
+            if (moved)
+            {
+                _gameManager.updateGrid(this);
+                moved = false;
+            }
+
+
+        }
+
+
+
+        /*destroy = true;
+
+        //horizontal 
+        collideNumber = Physics2D.OverlapArea(new Vector2(horizontalCheck.position.x - 1.0f, horizontalCheck.position.y), new Vector2(horizontalCheck.position.x + 1.0f, horizontalCheck.position.y - 0.05f), contact2D, collisionList);
+
+        if ( collideNumber > 2)  //if left and right are the same box 
+        {
+
+            collideNumber = Physics2D.OverlapArea( new Vector2 (horizontalCheck.position.x -2.0f, horizontalCheck.position.y), new Vector2(horizontalCheck.position.x + 2.0f, horizontalCheck.position.y - 0.05f), contact2D, collisionList);
+
+            for (int i =0; i< collideNumber; i++)
+            {
+                Rigidbody2D rb = collisionList[i].GetComponent<Rigidbody2D>();
+                // Debug.Log(rb.velocity);
+
+                if (Mathf.Abs (rb.velocity.y) > 0.1f )
+                    destroy = false;    //so box doesn't get destroyed while dropping      
+            }
+
+            if (destroy)
+            {
+                matched = true; 
+                for (int i = 0; i < collideNumber; i++)
+                {      
+                    Destroy(collisionList[i].gameObject, 1.0f);
+                }
+
+            }
+        }
+
+        //vertical
+        verticalCollideNumber  = Physics2D.OverlapArea(new Vector2(horizontalCheck.position.x, horizontalCheck.position.y-1.0f), new Vector2(horizontalCheck.position.x-0.05f, horizontalCheck.position.y + 1.0f), contact2D, collisionList);
+
+        if (verticalCollideNumber > 2)  //if up and down are the same box 
+        {
+
+            collideNumber = Physics2D.OverlapArea(new Vector2(horizontalCheck.position.x, horizontalCheck.position.y-2.0f), new Vector2(horizontalCheck.position.x -0.05f, horizontalCheck.position.y +2.0f), contact2D, collisionList);
+
+            for (int i = 0; i < collideNumber; i++)
+            {
+                Rigidbody2D rb = collisionList[i].GetComponent<Rigidbody2D>();
+                // Debug.Log(rb.velocity);
+
+                if (Mathf.Abs(rb.velocity.y) > 0.1f)
+                    destroy = false;    //so box doesn't get destroyed while dropping      
+            }
+      
+            if (destroy)
+            {
+               
+                for (int i = 0; i < collideNumber; i++)
+                {
+                    if (collisionList[i].gameObject != null)  //avoid double deleting
+                    {   
+
+                        Destroy(collisionList[i].gameObject, 1.0f);
+                    }
+                }
+
+            }
+        }*/
+
+
+
 
     }
 
-    
+
 }
