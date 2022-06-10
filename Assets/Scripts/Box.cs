@@ -133,6 +133,8 @@ public class Box : MonoBehaviour
         //vertical
         verticalCollideNumber  = Physics2D.OverlapArea(new Vector2(horizontalCheck.position.x, horizontalCheck.position.y-1.0f), new Vector2(horizontalCheck.position.x-0.05f, horizontalCheck.position.y + 1.0f), contact2D, collisionList);
 
+        destroy = true;
+        
         if (!destroying && verticalCollideNumber > 2)  //if up and down are the same box 
         {
 
