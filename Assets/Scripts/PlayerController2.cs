@@ -22,33 +22,34 @@ public class PlayerController2 : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         Timer.instance.BeginTimer();
+        Debug.Log(rb.GetComponent<Transform>().gameObject.name);
     }
 
     // Update is called once per frame
     void Update()
     {
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.W))
         {
            // Debug.Log("Space pressed");
             jump = true;
         }
 
         // move right
-        if (Input.GetKey(KeyCode.RightArrow))
+        if (Input.GetKey(KeyCode.D))
         {
 
             moveDir = Vector2.right;
         }
 
         // move left
-        if (Input.GetKey(KeyCode.LeftArrow))
+        if (Input.GetKey(KeyCode.A))
         {
             moveDir = Vector2.left;
         }
 
 
-        horizontalInput = Input.GetAxis("Horizontal");
+        horizontalInput = Input.GetAxis("Horizontal2");
 
     }
 
