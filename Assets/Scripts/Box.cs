@@ -5,6 +5,10 @@ using UnityEngine;
 public class Box : MonoBehaviour
 {
 
+    public PlayerController player1;
+    // public PlayerController player2;
+    private int p1MatchCount = 0;
+    //private int p2MatchCount;
 
     public LayerMask detectLayer;
 
@@ -12,6 +16,7 @@ public class Box : MonoBehaviour
 
     [SerializeField] private LayerMask sameBoxType;
 
+    
    
     private ContactFilter2D contact2D;
 
@@ -45,7 +50,7 @@ public class Box : MonoBehaviour
 
             if (upHit)
             {
-                Debug.Log("uphit");
+                //Debug.Log("uphit");
                 return;
             }
 
@@ -69,7 +74,11 @@ public class Box : MonoBehaviour
     int collideNumber;
     int verticalCollideNumber; 
     private Collider2D[] collisionList = new Collider2D[5];
-    bool destroy; 
+    bool destroy;
+    bool destroying = false; 
+   
+
+
 
     private void FixedUpdate()
     {
@@ -78,7 +87,7 @@ public class Box : MonoBehaviour
         //horizontal 
         collideNumber = Physics2D.OverlapArea(new Vector2(horizontalCheck.position.x - 1.0f, horizontalCheck.position.y), new Vector2(horizontalCheck.position.x + 1.0f, horizontalCheck.position.y - 0.05f), contact2D, collisionList);
 
-        if ( collideNumber > 2)  //if left and right are the same box 
+        if ( !destroying && collideNumber > 2)  //if left and right are the same box 
         {
 
             collideNumber = Physics2D.OverlapArea( new Vector2 (horizontalCheck.position.x -2.0f, horizontalCheck.position.y), new Vector2(horizontalCheck.position.x + 2.0f, horizontalCheck.position.y - 0.05f), contact2D, collisionList);
@@ -94,19 +103,37 @@ public class Box : MonoBehaviour
 
             if (destroy)
             {
-                matched = true; 
+
+                
+                destroying = true; 
+                
                 for (int i = 0; i < collideNumber; i++)
                 {      
                     Destroy(collisionList[i].gameObject, 1.0f);
                 }
 
+                GlobalVariables.P1MatchCount++;
+
+                Debug.Log(GlobalVariables.P1MatchCount);
+
+                if(GlobalVariables.P1MatchCount >= 2)
+                {
+                    player1.GetComponent<PlayerController>().P1BombCount++;
+
+                    GlobalVariables.P1MatchCount -= 2; 
+                }
+
+            }
+            else
+            {
+                destroying = false; 
             }
         }
 
         //vertical
         verticalCollideNumber  = Physics2D.OverlapArea(new Vector2(horizontalCheck.position.x, horizontalCheck.position.y-1.0f), new Vector2(horizontalCheck.position.x-0.05f, horizontalCheck.position.y + 1.0f), contact2D, collisionList);
 
-        if (verticalCollideNumber > 2)  //if up and down are the same box 
+        if (!destroying && verticalCollideNumber > 2)  //if up and down are the same box 
         {
 
             collideNumber = Physics2D.OverlapArea(new Vector2(horizontalCheck.position.x, horizontalCheck.position.y-2.0f), new Vector2(horizontalCheck.position.x -0.05f, horizontalCheck.position.y +2.0f), contact2D, collisionList);
@@ -122,7 +149,7 @@ public class Box : MonoBehaviour
       
             if (destroy)
             {
-               
+                destroying = true;
                 for (int i = 0; i < collideNumber; i++)
                 {
                     if (collisionList[i].gameObject != null)  //avoid double deleting
@@ -131,7 +158,22 @@ public class Box : MonoBehaviour
                         Destroy(collisionList[i].gameObject, 1.0f);
                     }
                 }
+                GlobalVariables.P1MatchCount++;
 
+                Debug.Log(GlobalVariables.P1MatchCount);
+
+                if (GlobalVariables.P1MatchCount >= 2)
+                {
+                    player1.GetComponent<PlayerController>().P1BombCount++;
+
+                    GlobalVariables.P1MatchCount -= 2;
+                }
+
+
+            }
+            else
+            {
+                destroying = false;
             }
         }
 
