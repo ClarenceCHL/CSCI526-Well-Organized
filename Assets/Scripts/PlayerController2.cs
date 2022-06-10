@@ -2,20 +2,13 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
-
-public class PlayerController : MonoBehaviour
+public class PlayerController2 : MonoBehaviour
 {
-    //public int NumberOfBombsAvailable = GlobalVariables.P1BombCount;
-    public Text BombNumber;
-    public int P1BombCount =0;
-
     Vector2 moveDir; // move direction
     public LayerMask detectLayer;
     private bool jump;
 
-    [SerializeField] private GameObject bomb; 
 
     [SerializeField] private Transform groundCheckTransform;
 
@@ -31,27 +24,11 @@ public class PlayerController : MonoBehaviour
         Timer.instance.BeginTimer();
     }
 
-
-
-    private bool layBomb = false;
-
     // Update is called once per frame
     void Update()
     {
-        BombNumber.text = "AVAILABLE BOMBS: " + P1BombCount;
-        
-        if (Input.GetKeyDown(KeyCode.RightShift) && P1BombCount > 0 )
-        {
-            Debug.Log("Bomb");
-            layBomb = true;
 
-            P1BombCount--; 
-        }
-
-
-
-
-        if (Input.GetKeyDown(KeyCode.UpArrow))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
            // Debug.Log("Space pressed");
             jump = true;
@@ -82,20 +59,11 @@ public class PlayerController : MonoBehaviour
     {
         CanMoveInThisDir(moveDir);
 
-
-
-        if (layBomb)
-        {
-            GameObject newBomb =  Instantiate(bomb, new Vector3(transform.position.x , transform.position.y, 0), Quaternion.identity); 
-            Destroy(newBomb, 2);
-            layBomb = false; 
-        }
-
         //if in air 
         if (!Physics2D.OverlapArea(groundCheckTransform.position, new Vector2(groundCheckTransform.position.x+0.8f, groundCheckTransform.position.y-0.1f), detectLayer))
         {
             rb.velocity = new Vector2(horizontalInput * 4, rb.velocity.y);
-           // Debug.Log("IN AIR");
+            Debug.Log("IN AIR");
             jump = false;
 
     
