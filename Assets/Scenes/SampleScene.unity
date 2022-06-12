@@ -1272,7 +1272,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6708120188623499523, guid: ee7e276fc202349bfbdfa7b93231880b, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ee7e276fc202349bfbdfa7b93231880b, type: 3}
@@ -1370,7 +1370,7 @@ GameObject:
   m_Component:
   - component: {fileID: 380639877}
   - component: {fileID: 380639878}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: HorizontalCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1709,7 +1709,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6708120188623499523, guid: ee7e276fc202349bfbdfa7b93231880b, type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ee7e276fc202349bfbdfa7b93231880b, type: 3}
@@ -2172,7 +2172,7 @@ BoxCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
-    border: {x: 0, y: 0.015625, z: 0, w: 0}
+    border: {x: 0, y: 0.03125, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 0.71875, y: 0.84375}
     newSize: {x: 0.71875, y: 0.828125}
@@ -4138,7 +4138,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2008003798}
   - component: {fileID: 2008003799}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: HorizontalCheck (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
