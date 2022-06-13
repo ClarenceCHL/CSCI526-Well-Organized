@@ -16,8 +16,8 @@ public class Box : MonoBehaviour
 
     [SerializeField] private LayerMask sameBoxType;
 
-    
-   
+    GameManager _gameManager;
+
     private ContactFilter2D contact2D;
 
     private bool matched;
@@ -27,7 +27,7 @@ public class Box : MonoBehaviour
         
         contact2D.useLayerMask = true;
         contact2D.layerMask = sameBoxType;
-
+        _gameManager = GameManager.Instance;
     }
 
     public void CanMoveInThisDir(Vector2 dir) {
@@ -85,12 +85,16 @@ public class Box : MonoBehaviour
         destroy = true;
 
         //horizontal 
-        collideNumber = Physics2D.OverlapArea(new Vector2(horizontalCheck.position.x - 1.0f, horizontalCheck.position.y), new Vector2(horizontalCheck.position.x + 1.0f, horizontalCheck.position.y - 0.05f), contact2D, collisionList);
+        collideNumber = Physics2D.OverlapArea(new Vector2(horizontalCheck.position.x - 1.0f, horizontalCheck.position.y), 
+                                              new Vector2(horizontalCheck.position.x + 1.0f, horizontalCheck.position.y - 0.05f), 
+                                              contact2D, collisionList);
 
         if ( !destroying && collideNumber > 2)  //if left and right are the same box 
         {
 
-            collideNumber = Physics2D.OverlapArea( new Vector2 (horizontalCheck.position.x -2.0f, horizontalCheck.position.y), new Vector2(horizontalCheck.position.x + 2.0f, horizontalCheck.position.y - 0.05f), contact2D, collisionList);
+            collideNumber = Physics2D.OverlapArea(new Vector2 (horizontalCheck.position.x -2.0f, horizontalCheck.position.y), 
+                                                  new Vector2(horizontalCheck.position.x + 2.0f, horizontalCheck.position.y - 0.05f), 
+                                                  contact2D, collisionList);
 
             for (int i =0; i< collideNumber; i++)
             {
@@ -110,11 +114,19 @@ public class Box : MonoBehaviour
                 for (int i = 0; i < collideNumber; i++)
                 {      
                     Destroy(collisionList[i].gameObject, 1.0f);
+                    if (contact2D.layerMask.value == 128)
+                    {
+                        _gameManager.addScore(1);
+                    }
+                    else if (contact2D.layerMask.value == 1280)
+                    {
+                        _gameManager.addScore(2);
+                    }
                 }
 
                 GlobalVariables.P1MatchCount++;
 
-                Debug.Log(GlobalVariables.P1MatchCount);
+                //Debug.Log(GlobalVariables.P1MatchCount);
 
                 if(GlobalVariables.P1MatchCount >= 2)
                 {
@@ -159,6 +171,14 @@ public class Box : MonoBehaviour
                     {   
 
                         Destroy(collisionList[i].gameObject, 1.0f);
+                        if (contact2D.layerMask.value == 128)
+                        {
+                            _gameManager.addScore(1);
+                        }
+                        else if (contact2D.layerMask.value == 1280)
+                        {
+                            _gameManager.addScore(2);
+                        }
                     }
                 }
                 GlobalVariables.P1MatchCount++;
