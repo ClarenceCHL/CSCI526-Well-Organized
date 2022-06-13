@@ -98,7 +98,7 @@ public class Box : MonoBehaviour
                 // Debug.Log(rb.velocity);
 
                 if (Mathf.Abs (rb.velocity.y) > 0.1f )
-                    destroy = false;    //so box doesn't get destroyed while dropping      
+                    destroy = false;    //so box doesn't get destroyed while dropping    
             }
 
             if (destroy)
@@ -146,7 +146,8 @@ public class Box : MonoBehaviour
                 // Debug.Log(rb.velocity);
 
                 if (Mathf.Abs(rb.velocity.y) > 0.1f)
-                    destroy = false;    //so box doesn't get destroyed while dropping      
+                    destroy = false;    //so box doesn't get destroyed while dropping
+
             }
       
             if (destroy)
