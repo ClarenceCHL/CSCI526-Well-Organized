@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -8,6 +9,9 @@ public class GameManager : MonoBehaviour
 
     public GameObject objectToSpawn1;
     public GameObject objectToSpawn2;
+
+    public Text P1Score;
+    public Text P2Score;
 
     private float dropRate = 2.0f; //drop a box every 2 seconds
     private float nextDrop = 0.0f;
@@ -92,12 +96,12 @@ public class GameManager : MonoBehaviour
         if(i == 1)
         {
             player1Score += 10;
-            Debug.Log("player1: " + player1Score);
+            P1Score.text = "P1 Score: " + player1Score;
         }
         else
         {
             player2Score += 10;
-            Debug.Log("player2: " + player2Score);
+            P2Score.text = "P2 Score: " + player2Score;
         }
     }
 

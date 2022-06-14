@@ -22,7 +22,7 @@ public class PlayerController2 : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         Timer.instance.BeginTimer();
-        Debug.Log(rb.GetComponent<Transform>().gameObject.name);
+        //Debug.Log(rb.GetComponent<Transform>().gameObject.name);
     }
 
     // Update is called once per frame
@@ -64,7 +64,7 @@ public class PlayerController2 : MonoBehaviour
         if (!Physics2D.OverlapArea(groundCheckTransform.position, new Vector2(groundCheckTransform.position.x+0.8f, groundCheckTransform.position.y-0.1f), detectLayer))
         {
             rb.velocity = new Vector2(horizontalInput * 4, rb.velocity.y);
-            Debug.Log("IN AIR");
+            //Debug.Log("IN AIR");
             jump = false;
 
     
