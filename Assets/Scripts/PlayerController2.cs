@@ -2,13 +2,20 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 public class PlayerController2 : MonoBehaviour
 {
+    //public int NumberOfBombsAvailable = GlobalVariables.P1BombCount;
+    public Text BombNumber;
+    public int P2BombCount = 0;
+
     Vector2 moveDir; // move direction
     public LayerMask detectLayer;
     private bool jump;
 
+    [SerializeField] private GameObject bomb;
 
     [SerializeField] private Transform groundCheckTransform;
 
@@ -22,16 +29,31 @@ public class PlayerController2 : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         Timer.instance.BeginTimer();
-        //Debug.Log(rb.GetComponent<Transform>().gameObject.name);
     }
+
+
+
+    private bool layBomb = false;
 
     // Update is called once per frame
     void Update()
     {
+        BombNumber.text = "BOMBS: " + P2BombCount;
+
+        if (Input.GetKeyDown(KeyCode.LeftShift) && P2BombCount > 0)
+        {
+            Debug.Log("Bomb");
+            layBomb = true;
+
+            P2BombCount--;
+        }
+
+
+
 
         if (Input.GetKeyDown(KeyCode.W))
         {
-           // Debug.Log("Space pressed");
+            // Debug.Log("Space pressed");
             jump = true;
         }
 
@@ -60,20 +82,30 @@ public class PlayerController2 : MonoBehaviour
     {
         CanMoveInThisDir(moveDir);
 
+
+
+        if (layBomb)
+        {
+            GameObject newBomb = Instantiate(bomb, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
+            newBomb.GetComponent<Rigidbody2D>().velocity = transform.GetComponent<Rigidbody2D>().velocity *2 ; //throw bomb 
+            Destroy(newBomb, 2);
+            layBomb = false;
+        }
+
         //if in air 
-        if (!Physics2D.OverlapArea(groundCheckTransform.position, new Vector2(groundCheckTransform.position.x+0.8f, groundCheckTransform.position.y-0.1f), detectLayer))
+        if (!Physics2D.OverlapArea(groundCheckTransform.position, new Vector2(groundCheckTransform.position.x + 0.8f, groundCheckTransform.position.y - 0.1f), detectLayer))
         {
             rb.velocity = new Vector2(horizontalInput * 4, rb.velocity.y);
-            //Debug.Log("IN AIR");
+            // Debug.Log("IN AIR");
             jump = false;
 
-    
+
             return;
         }
 
 
         rb.velocity = new Vector2(horizontalInput * 4, rb.velocity.y);
-       
+
 
 
         if (jump)
@@ -97,13 +129,13 @@ public class PlayerController2 : MonoBehaviour
     {
         // detectLayer to avoid hit player
         RaycastHit2D hit = Physics2D.Raycast(transform.position, dir, 1.0f, detectLayer);
-        if (hit) 
-       
+        if (hit)
+
         {
             if (hit.collider.GetComponent<Box>() != null)
-                 hit.collider.GetComponent<Box>().CanMoveInThisDir(dir);
+                hit.collider.GetComponent<Box>().CanMoveInThisDir(dir);
         }
-      //  return false;
+        //  return false;
     }
 
 
