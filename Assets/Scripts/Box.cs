@@ -30,44 +30,60 @@ public class Box : MonoBehaviour
         _gameManager = GameManager.Instance;
     }
 
-    public void CanMoveInThisDir(Vector2 dir) {
+    // check is wallBox or not
+    int testNumber;
+    private Collider2D[] testList = new Collider2D[5];
+    private ContactFilter2D test2D;
+
+    public void CanMoveInThisDir(Vector2 dir)
+    {
 
         if (matched) return; //matched boxes waiting to be destroyed can't be pushed
 
         //return if box is still moving
-        if ( Mathf.Abs(GetComponent<Rigidbody2D>().velocity.y) > 0.1f ) 
-            return; 
-        
+        if (Mathf.Abs(GetComponent<Rigidbody2D>().velocity.y) > 0.1f)
+            return;
 
-        if(dir != null)
+        if (dir != null)
         {
             bool selfHit = false;
+            bool isWallBox = false;
 
             // detect if hit some obstacle 
             RaycastHit2D hit = Physics2D.Raycast(transform.position + (Vector3)dir * 0.4f, dir, 0.5f);
             RaycastHit2D upHit = Physics2D.Raycast(transform.position + (Vector3)(Vector2.up) * 0.6f, Vector2.up, 0.5f);
-            
+
 
             if (upHit)
             {
-                //Debug.Log("uphit");
-                return;
+                testNumber = Physics2D.OverlapArea(horizontalCheck.position, 
+                                                   new Vector2(horizontalCheck.position.x - 0.05f, horizontalCheck.position.y + 2.0f), 
+                                                   test2D, testList);
+                for (int i = 0; i < testNumber; i++)
+                {
+                    Rigidbody2D targetBox = testList[i].GetComponent<Rigidbody2D>();
+                    if (targetBox.gameObject.layer == 3)
+                    {
+                        isWallBox = true;
+                    }
+                }
+                if (!isWallBox)
+                {
+                    return;
+                }
             }
 
             if (hit && hit.collider.name == transform.name)
             {
                 selfHit = true;
-
             }
 
             if (!hit || selfHit)
             {
                 // no obstacle move in "dir" direction
                 transform.Translate(dir);
-
             }
         }
-
     }
 
 
