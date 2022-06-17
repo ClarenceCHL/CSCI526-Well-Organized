@@ -18,10 +18,18 @@ public class HeadCheck : MonoBehaviour
     {
 
 
+<<<<<<< HEAD
         if (other.gameObject.layer == 7)
         {
             GameOver();
             Timer.instance.EndTimer();
+=======
+        if (other.gameObject.layer == 7 || other.gameObject.layer == 8)
+        {
+            GameOver();
+            Timer.instance.EndTimer();
+            Time.timeScale = 0;
+>>>>>>> main
         }
 
     }

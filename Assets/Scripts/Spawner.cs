@@ -8,7 +8,7 @@ public class Spawner : MonoBehaviour
     public GameObject objectToSpawn1;
     public GameObject objectToSpawn2;
 
-    private float dropRate = 2.0f; //drop a box every 2 seconds
+    private float dropRate = 1.0f; //drop a box every 1 second
     private float nextDrop = 0.0f;
     // Start is called before the first frame update
     void Start()
