@@ -3154,9 +3154,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b15903867c7664e9fa539da5ba4832ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BombNumber: {fileID: 7131464660052060586, guid: 95c36ed53692d7d4688d6cac18972beb, type: 3}
+  P2BombCount: 0
   detectLayer:
     serializedVersion: 2
     m_Bits: 1416
+  bomb: {fileID: 1362230307}
   groundCheckTransform: {fileID: 366481194}
 --- !u!50 &807153160
 Rigidbody2D:

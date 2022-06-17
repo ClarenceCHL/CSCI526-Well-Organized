@@ -48,24 +48,21 @@ public class PlayerController : MonoBehaviour
             P1BombCount--; 
         }
 
-
-
-
-        if (Input.GetKeyDown(KeyCode.UpArrow))
+        if (Input.GetKeyDown(KeyCode.W))
         {
-           // Debug.Log("Space pressed");
+            // Debug.Log("Space pressed");
             jump = true;
         }
 
         // move right
-        if (Input.GetKey(KeyCode.RightArrow))
+        if (Input.GetKey(KeyCode.D))
         {
 
             moveDir = Vector2.right;
         }
 
         // move left
-        if (Input.GetKey(KeyCode.LeftArrow))
+        if (Input.GetKey(KeyCode.A))
         {
             moveDir = Vector2.left;
         }
