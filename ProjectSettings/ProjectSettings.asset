@@ -4,7 +4,7 @@
 PlayerSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 23
-  productGUID: 151adfd1bfc474d12b14fdcfb8436b2e
+  productGUID: 6d4801fc7dd404bd4a91de671f8098d4
   AndroidProfiler: 0
   AndroidFilterTouchesWhenObscured: 0
   AndroidEnableSustainedPerformanceMode: 0
@@ -12,7 +12,7 @@ PlayerSettings:
   targetDevice: 2
   useOnDemandResources: 0
   accelerometerFrequency: 60
-  companyName: Psyduck
+  companyName: DefaultCompany
   productName: Well-Organized
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
@@ -563,11 +563,11 @@ PlayerSettings:
   webGLTemplate: APPLICATION:Default
   webGLAnalyzeBuildSize: 0
   webGLUseEmbeddedResources: 0
-  webGLCompressionFormat: 1
+  webGLCompressionFormat: 0
   webGLWasmArithmeticExceptions: 0
   webGLLinkerTarget: 1
   webGLThreadsSupport: 0
-  webGLDecompressionFallback: 1
+  webGLDecompressionFallback: 0
   scriptingDefineSymbols: {}
   additionalCompilerArguments: {}
   platformArchitecture: {}
