@@ -48,10 +48,5 @@ public class LevelSelect : MonoBehaviour
         GlobalVariables.P1MatchCount = 0;
     }
 
-    public void ReturnButtom()
-    {
-        SceneManager.LoadScene("LevelSelect");
-        Time.timeScale = 1.0f;
-        GlobalVariables.P1MatchCount = 0;
-    }
+    
 }

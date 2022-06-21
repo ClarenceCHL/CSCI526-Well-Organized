@@ -150,13 +150,10 @@ public class Box : MonoBehaviour
                 if (isPlayer1)
                 {
                     GlobalVariables.P1MatchCount++;
-                    Debug.Log(GlobalVariables.P1MatchCount);
 
                     if (GlobalVariables.P1MatchCount >= 2)
                     {
-                        player1.GetComponent<PlayerController>().P1BombCount++;
-
-                        Debug.Log("P1 BombCOunt:" + player1.GetComponent<PlayerController>().P1BombCount);
+                        player1.P1BombCount++;
 
                         GlobalVariables.P1MatchCount -= 2;
                     }
@@ -164,13 +161,10 @@ public class Box : MonoBehaviour
                 else
                 {
                     GlobalVariables.P2MatchCount++;
-                    Debug.Log(GlobalVariables.P2MatchCount);
 
                     if (GlobalVariables.P2MatchCount >= 2)
                     {
-                        player2.GetComponent<PlayerController2>().P2BombCount++;
-
-                        Debug.Log("P2 BombCOunt:" + player2.GetComponent<PlayerController2>().P2BombCount);
+                        player2.P2BombCount++;
 
                         GlobalVariables.P2MatchCount -= 2;
 
@@ -240,13 +234,10 @@ public class Box : MonoBehaviour
                 if (isPlayer1)
                 {
                     GlobalVariables.P1MatchCount++;
-                    Debug.Log(GlobalVariables.P1MatchCount);
 
                     if (GlobalVariables.P1MatchCount >= 2)
                     {
-                        player1.GetComponent<PlayerController>().P1BombCount++;
-
-                        Debug.Log("P1 BombCOunt:" + player1.GetComponent<PlayerController>().P1BombCount);
+                        player1.P1BombCount++;
 
                         GlobalVariables.P1MatchCount -= 2;
                     }
@@ -254,13 +245,10 @@ public class Box : MonoBehaviour
                 else
                 {
                     GlobalVariables.P2MatchCount++;
-                    Debug.Log(GlobalVariables.P2MatchCount);
 
                     if (GlobalVariables.P2MatchCount >= 2)
                     {
-                        player2.GetComponent<PlayerController2>().P2BombCount++;
-
-                        Debug.Log("P2 BombCOunt:" + player2.GetComponent<PlayerController2>().P2BombCount);
+                        player2.P2BombCount++;
 
                         GlobalVariables.P2MatchCount -= 2;
 

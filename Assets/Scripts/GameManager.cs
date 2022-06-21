@@ -10,14 +10,29 @@ public class GameManager : MonoBehaviour
     public GameObject objectToSpawn1;
     public GameObject objectToSpawn2;
 
+    public GameObject player1;
+    public GameObject player2;
+
     public Text P1Score;
     public Text P2Score;
+
+    public Text P1HP;
+    public Text P2HP;
 
     private float dropRate = 2.0f; //drop a box every 2 seconds
     private float nextDrop = 0.0f;
 
     private int player1Score;
     private int player2Score;
+
+    private int player1HP;
+    private int player2HP;
+
+    private Vector3 P1RespawnPoint;
+    private Vector3 P2RespawnPoint;
+
+    public GameOverScreen GameOverScreen1;
+    public GameOverScreen GameOverScreen2;
 
     //public GameObject shoko;
     //public GameObject player;
@@ -33,7 +48,7 @@ public class GameManager : MonoBehaviour
 
     //static Box[,] grid;
 
-    PlayerController playerController;
+    public PlayerController playerController;
 
     private static GameManager _instance;
 
@@ -51,6 +66,12 @@ public class GameManager : MonoBehaviour
         //startPosition();
         player1Score = 0;
         player2Score = 0;
+        player1HP = 3;
+        player2HP = 3;
+        P1HP.text = "P1 HP: " + player1HP;
+        P2HP.text = "P2 HP: " + player2HP;
+        P1RespawnPoint = new Vector3(-3.5f, 10.0f, 0.0f);
+        P2RespawnPoint = new Vector3(3.5f, 10.0f, 0.0f);
     }
 
     // Update is called once per frame
@@ -65,7 +86,14 @@ public class GameManager : MonoBehaviour
             nextDrop = time + dropRate;
         }
 
-
+        if(player1HP <= 0)
+        {
+            gameOver(2);
+        }
+        else if(player2HP <= 0)
+        {
+            gameOver(1);
+        }
     }
 
     void dropBox()
@@ -102,6 +130,66 @@ public class GameManager : MonoBehaviour
         {
             player2Score += 10;
             P2Score.text = "P2 Score: " + player2Score;
+        }
+    }
+
+    public void lostHP(int playerID)
+    {
+        if(playerID == 1)
+        {
+            if(player1HP > 0)
+            {
+                StartCoroutine(player1Respawn(2.0f));
+                player1HP--;
+;               P1HP.text = "P1 HP: " + player1HP;
+            }
+            
+        }
+        else
+        {
+            if(player2HP > 0)
+            {
+                StartCoroutine(player2Respawn(2.0f));
+                player2HP--;
+                P2HP.text = "P2 HP: " + player2HP;
+            }
+        }
+        
+    }
+
+    IEnumerator player1Respawn(float timeInMS)
+    {
+
+        player1.SetActive(false);
+
+        yield return new WaitForSeconds(timeInMS);
+
+        player1.SetActive(true);
+        player1.transform.position = P1RespawnPoint;
+    }
+
+    IEnumerator player2Respawn(float timeInMS)
+    {
+
+        player2.SetActive(false);
+
+        yield return new WaitForSeconds(timeInMS);
+
+        player2.SetActive(true);
+        player2.transform.position = P2RespawnPoint;
+    }
+
+    private void gameOver(int i)
+    {
+        Timer.instance.EndTimer();
+        Time.timeScale = 0;
+        if (i == 1)
+        {
+            GameOverScreen1.Setup();
+        }
+        else
+        {
+            GameOverScreen2.Setup();
         }
     }
 
