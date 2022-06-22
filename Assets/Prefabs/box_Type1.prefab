@@ -147,7 +147,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e764e5a7f972746c683177761b38da31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player1: {fileID: 15597868858558632, guid: b28d84a1d50757a47b7930060346223f, type: 3}
+  player1: {fileID: 5461451015212796079, guid: b28d84a1d50757a47b7930060346223f, type: 3}
+  player2: {fileID: 0}
   detectLayer:
     serializedVersion: 2
     m_Bits: 392
