@@ -124,7 +124,7 @@ public class PlayerController : MonoBehaviour
     void CanMoveInThisDir(Vector2 dir)
     {
         // detectLayer to avoid hit player
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, dir, 1.0f, detectLayer);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, dir, 0.55f, detectLayer);
         if (hit) 
        
         {

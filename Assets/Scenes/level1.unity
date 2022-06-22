@@ -3946,6 +3946,10 @@ PrefabInstance:
       propertyPath: BombNumber
       value: 
       objectReference: {fileID: 52959653}
+    - target: {fileID: 5461451015738546992, guid: b28d84a1d50757a47b7930060346223f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 6870049246222424096, guid: b28d84a1d50757a47b7930060346223f, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -3991,6 +3995,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2639592441916404351, guid: 784beaa1569cf064db817b26ff2f256b, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2639592441916404351, guid: 784beaa1569cf064db817b26ff2f256b, type: 3}
+      propertyPath: m_AutoTiling
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2673868558033081938, guid: 784beaa1569cf064db817b26ff2f256b, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -4035,6 +4047,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6999521509801891153, guid: 784beaa1569cf064db817b26ff2f256b, type: 3}
+      propertyPath: m_Mass
+      value: 10000
+      objectReference: {fileID: 0}
+    - target: {fileID: 6999521509801891153, guid: 784beaa1569cf064db817b26ff2f256b, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: 002eb9d964fed401281033970fcbd4e4, type: 2}
     - target: {fileID: 7384647932784944249, guid: 784beaa1569cf064db817b26ff2f256b, type: 3}
       propertyPath: player1
       value: 
@@ -4043,6 +4063,10 @@ PrefabInstance:
       propertyPath: player2
       value: 
       objectReference: {fileID: 7777267574567555377}
+    - target: {fileID: 7384647932784944249, guid: 784beaa1569cf064db817b26ff2f256b, type: 3}
+      propertyPath: detectLayer.m_Bits
+      value: 456
+      objectReference: {fileID: 0}
     - target: {fileID: 8729666887884528554, guid: 784beaa1569cf064db817b26ff2f256b, type: 3}
       propertyPath: m_Name
       value: box_Type2
@@ -4091,6 +4115,14 @@ PrefabInstance:
     - target: {fileID: 7551372895424688859, guid: ffbaa922f5964c04b9f7497d73345e01, type: 3}
       propertyPath: m_Layer
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7551372895872762260, guid: ffbaa922f5964c04b9f7497d73345e01, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7551372895872762260, guid: ffbaa922f5964c04b9f7497d73345e01, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 7551372895872762261, guid: ffbaa922f5964c04b9f7497d73345e01, type: 3}
       propertyPath: m_Layer
@@ -4201,6 +4233,26 @@ PrefabInstance:
       propertyPath: player2
       value: 
       objectReference: {fileID: 7777267574567555377}
+    - target: {fileID: 3516375237806364744, guid: a79131c70f840f041a608d7e312f1af1, type: 3}
+      propertyPath: detectLayer.m_Bits
+      value: 456
+      objectReference: {fileID: 0}
+    - target: {fileID: 4004946042232973664, guid: a79131c70f840f041a608d7e312f1af1, type: 3}
+      propertyPath: m_Mass
+      value: 10000
+      objectReference: {fileID: 0}
+    - target: {fileID: 4004946042232973664, guid: a79131c70f840f041a608d7e312f1af1, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: 002eb9d964fed401281033970fcbd4e4, type: 2}
+    - target: {fileID: 8220918533533339214, guid: a79131c70f840f041a608d7e312f1af1, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8220918533533339214, guid: a79131c70f840f041a608d7e312f1af1, type: 3}
+      propertyPath: m_AutoTiling
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8335137923887295075, guid: a79131c70f840f041a608d7e312f1af1, type: 3}
       propertyPath: m_RootOrder
       value: 4

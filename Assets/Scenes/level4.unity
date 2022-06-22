@@ -1509,12 +1509,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 945354604}
     - target: {fileID: 4775377074777444048, guid: ee7e276fc202349bfbdfa7b93231880b, type: 3}
+      propertyPath: player2
+      value: 
+      objectReference: {fileID: 869528039}
+    - target: {fileID: 4775377074777444048, guid: ee7e276fc202349bfbdfa7b93231880b, type: 3}
       propertyPath: horizontalCheck
       value: 
       objectReference: {fileID: 380639877}
     - target: {fileID: 4775377074777444048, guid: ee7e276fc202349bfbdfa7b93231880b, type: 3}
       propertyPath: detectLayer.m_Bits
-      value: 392
+      value: 456
       objectReference: {fileID: 0}
     - target: {fileID: 4775377074777444048, guid: ee7e276fc202349bfbdfa7b93231880b, type: 3}
       propertyPath: sameBoxType.m_Bits
@@ -1522,12 +1526,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4980222212375969784, guid: ee7e276fc202349bfbdfa7b93231880b, type: 3}
       propertyPath: m_Mass
-      value: 1000
+      value: 10000
       objectReference: {fileID: 0}
     - target: {fileID: 4980222212375969784, guid: ee7e276fc202349bfbdfa7b93231880b, type: 3}
       propertyPath: m_BodyType
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4980222212375969784, guid: ee7e276fc202349bfbdfa7b93231880b, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: 002eb9d964fed401281033970fcbd4e4, type: 2}
     - target: {fileID: 4980222212375969784, guid: ee7e276fc202349bfbdfa7b93231880b, type: 3}
       propertyPath: m_AngularDrag
       value: 0
@@ -1987,7 +1995,7 @@ PrefabInstance:
     - target: {fileID: 4775377074777444048, guid: ee7e276fc202349bfbdfa7b93231880b, type: 3}
       propertyPath: player1
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 945354604}
     - target: {fileID: 4775377074777444048, guid: ee7e276fc202349bfbdfa7b93231880b, type: 3}
       propertyPath: player2
       value: 
@@ -1998,7 +2006,7 @@ PrefabInstance:
       objectReference: {fileID: 2008003798}
     - target: {fileID: 4775377074777444048, guid: ee7e276fc202349bfbdfa7b93231880b, type: 3}
       propertyPath: detectLayer.m_Bits
-      value: 392
+      value: 456
       objectReference: {fileID: 0}
     - target: {fileID: 4775377074777444048, guid: ee7e276fc202349bfbdfa7b93231880b, type: 3}
       propertyPath: sameBoxType.m_Bits
@@ -2876,6 +2884,14 @@ PrefabInstance:
       propertyPath: BombNumber
       value: 
       objectReference: {fileID: 1261045915}
+    - target: {fileID: 7551372895872762260, guid: ffbaa922f5964c04b9f7497d73345e01, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7551372895872762260, guid: ffbaa922f5964c04b9f7497d73345e01, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 7777267575374708516, guid: ffbaa922f5964c04b9f7497d73345e01, type: 3}
       propertyPath: m_RootOrder
       value: 8
@@ -3033,6 +3049,10 @@ PrefabInstance:
       propertyPath: BombNumber
       value: 
       objectReference: {fileID: 1261045916}
+    - target: {fileID: 5461451015738546992, guid: b28d84a1d50757a47b7930060346223f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 6870049246222424096, guid: b28d84a1d50757a47b7930060346223f, type: 3}
       propertyPath: m_IsActive
       value: 1
