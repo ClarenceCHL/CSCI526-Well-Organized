@@ -40,7 +40,7 @@ public class PlayerController : MonoBehaviour
     {
         BombNumber.text = "BOMBS: " + P1BombCount;
         
-        if (Input.GetKeyDown(KeyCode.RightShift) && P1BombCount > 0 )
+        if (Input.GetKeyDown(KeyCode.LeftShift) && P1BombCount > 0 )
         {
             Debug.Log("Bomb");
             layBomb = true;
