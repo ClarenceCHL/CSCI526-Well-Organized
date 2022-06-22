@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Analytics;
+using UnityEngine.SceneManagement;
 
 public class Timer : MonoBehaviour
 {
@@ -33,6 +35,10 @@ public class Timer : MonoBehaviour
 
     public void EndTimer()
     {
+        AnalyticsResult analyticsResult = Analytics.CustomEvent("DieTime" + TimeSpan.FromSeconds(elapsedTime) + "Level: " + SceneManager.GetActiveScene().name);
+        AnalyticsResult score = Analytics.CustomEvent("P1 score: " + GameManager.Instance.P1Score + "P2 score: " + GameManager.Instance.P2Score);
+        Debug.Log("Analytics: " + analyticsResult);
+        Debug.Log(score);
         timerGoing = false;
     }
 

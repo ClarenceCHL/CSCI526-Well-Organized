@@ -4,26 +4,32 @@ using UnityEngine;
 
 public class HeadCheck : MonoBehaviour
 {
-
-    public GameOverScreen GameOverScreen;
-
-    public void GameOver()
+    /*public void GameOver()
     {
+        Timer.instance.EndTimer();
+        Time.timeScale = 0;
         GameOverScreen.Setup(); //score
        // enableInput = false;
-    }
+    }*/
 
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-
-
+        string name = this.GetComponentInParent<Transform>().GetComponentInParent<Transform>().name;
         if (other.gameObject.layer == 7 || other.gameObject.layer == 8)
         {
-            GameOver();
-            Timer.instance.EndTimer();
-            Time.timeScale = 0;
+            if (name == "HeadCheck1")
+            {
+                GameManager.Instance.lostHP(1);
+            }
+            else if(name == "HeadCheck2")
+            {
+                GameManager.Instance.lostHP(2);
+            }
+            
         }
+
+        
 
     }
 }

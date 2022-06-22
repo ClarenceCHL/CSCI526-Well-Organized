@@ -15,7 +15,20 @@ public class GameOverScreen : MonoBehaviour
 
     public void RestartButton()
     {
-        SceneManager.LoadScene("SampleScene");
+        //SceneManager.LoadScene("SampleScene");
+
+        if(SceneManager.GetActiveScene().buildIndex == 0)
+        {
+            SceneManager.LoadScene(1);
+        }
+        else
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
+
+        
+
+        
         Time.timeScale = 1.0f;
         GlobalVariables.P1MatchCount = 0; 
     }

@@ -38,7 +38,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        BombNumber.text = "AVAILABLE BOMBS: " + P1BombCount;
+        BombNumber.text = "BOMBS: " + P1BombCount;
         
         if (Input.GetKeyDown(KeyCode.RightShift) && P1BombCount > 0 )
         {
@@ -48,24 +48,21 @@ public class PlayerController : MonoBehaviour
             P1BombCount--; 
         }
 
-
-
-
-        if (Input.GetKeyDown(KeyCode.UpArrow))
+        if (Input.GetKeyDown(KeyCode.W))
         {
-           // Debug.Log("Space pressed");
+            // Debug.Log("Space pressed");
             jump = true;
         }
 
         // move right
-        if (Input.GetKey(KeyCode.RightArrow))
+        if (Input.GetKey(KeyCode.D))
         {
 
             moveDir = Vector2.right;
         }
 
         // move left
-        if (Input.GetKey(KeyCode.LeftArrow))
+        if (Input.GetKey(KeyCode.A))
         {
             moveDir = Vector2.left;
         }
@@ -83,10 +80,10 @@ public class PlayerController : MonoBehaviour
         CanMoveInThisDir(moveDir);
 
 
-
         if (layBomb)
         {
-            GameObject newBomb =  Instantiate(bomb, new Vector3(transform.position.x , transform.position.y, 0), Quaternion.identity); 
+            GameObject newBomb =  Instantiate(bomb, new Vector3(transform.position.x , transform.position.y, 0), Quaternion.identity);
+            newBomb.GetComponent<Rigidbody2D>().velocity = transform.GetComponent<Rigidbody2D>().velocity * 2; //throw bomb 
             Destroy(newBomb, 2);
             layBomb = false; 
         }
