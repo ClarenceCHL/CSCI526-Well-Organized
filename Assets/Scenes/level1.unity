@@ -1481,6 +1481,7 @@ GameObject:
   - component: {fileID: 1362230311}
   - component: {fileID: 1362230310}
   - component: {fileID: 1362230312}
+  - component: {fileID: 1362230313}
   m_Layer: 9
   m_Name: Bomb
   m_TagString: Untagged
@@ -1529,7 +1530,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 10
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: fd8e11ee507d44698808cc6d58393076, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1572,7 +1573,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 1.28, y: 1.28}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -1593,6 +1594,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c6406903432a4749afab76614975398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 1362230313}
 --- !u!50 &1362230312
 Rigidbody2D:
   serializedVersion: 4
@@ -1609,11 +1611,31 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 7d2693a91f49f41f9adaf67ea903e98c, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!95 &1362230313
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1362230307}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 0ee0e4f92a6224690a0018329a5f8831, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1423161811
 GameObject:
   m_ObjectHideFlags: 0
@@ -3938,14 +3960,30 @@ PrefabInstance:
       propertyPath: GameOverScreen
       value: 
       objectReference: {fileID: 879544431}
+    - target: {fileID: 5461451015212796074, guid: b28d84a1d50757a47b7930060346223f, type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5461451015212796078, guid: b28d84a1d50757a47b7930060346223f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5461451015212796079, guid: b28d84a1d50757a47b7930060346223f, type: 3}
       propertyPath: bomb
       value: 
       objectReference: {fileID: 1362230307}
     - target: {fileID: 5461451015212796079, guid: b28d84a1d50757a47b7930060346223f, type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 60397824494000713}
+    - target: {fileID: 5461451015212796079, guid: b28d84a1d50757a47b7930060346223f, type: 3}
       propertyPath: BombNumber
       value: 
       objectReference: {fileID: 52959653}
+    - target: {fileID: 5461451015212796079, guid: b28d84a1d50757a47b7930060346223f, type: 3}
+      propertyPath: P1BombCount
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 5461451015738546992, guid: b28d84a1d50757a47b7930060346223f, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0.2
@@ -3988,6 +4026,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66441231b6deb46768873f4077e70013, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &60397824494000713
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 60397824494000707}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e2ce053d4554947ecbeaa74c5faf5eda, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &2611531487970373117
 PrefabInstance:
   m_ObjectHideFlags: 0
