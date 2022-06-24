@@ -203,6 +203,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1414698721}
     - target: {fileID: 5461451015212796079, guid: b28d84a1d50757a47b7930060346223f, type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 12194635}
+    - target: {fileID: 5461451015212796079, guid: b28d84a1d50757a47b7930060346223f, type: 3}
       propertyPath: BombNumber
       value: 
       objectReference: {fileID: 52959653}
@@ -4860,6 +4864,10 @@ PrefabInstance:
       propertyPath: bomb
       value: 
       objectReference: {fileID: 1414698721}
+    - target: {fileID: 7551372895424688858, guid: ffbaa922f5964c04b9f7497d73345e01, type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 1725937653}
     - target: {fileID: 7551372895424688858, guid: ffbaa922f5964c04b9f7497d73345e01, type: 3}
       propertyPath: BombNumber
       value: 
