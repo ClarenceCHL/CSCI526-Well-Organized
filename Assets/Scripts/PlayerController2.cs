@@ -21,7 +21,7 @@ public class PlayerController2 : MonoBehaviour
 
     private Rigidbody2D rb;
 
-
+    public Animator animator;
     private float horizontalInput;
 
     // Start is called before the first frame update
@@ -38,6 +38,9 @@ public class PlayerController2 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        animator.SetBool("isLeft", false);
+        animator.SetBool("isRight", false);
+
         BombNumber.text = "BOMBS: " + P2BombCount;
 
         if (Input.GetKeyDown(KeyCode.RightShift) && P2BombCount > 0)
@@ -53,6 +56,8 @@ public class PlayerController2 : MonoBehaviour
         {
             // Debug.Log("Space pressed");
             jump = true;
+            animator.SetBool("isRight", true);
+            animator.SetBool("isLeft", false);
         }
 
         // move right
@@ -66,6 +71,8 @@ public class PlayerController2 : MonoBehaviour
         if (Input.GetKey(KeyCode.LeftArrow))
         {
             moveDir = Vector2.left;
+            animator.SetBool("isLeft", true);
+            animator.SetBool("isRight", false);
         }
 
 

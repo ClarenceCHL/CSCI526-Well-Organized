@@ -4,24 +4,25 @@ using UnityEngine;
 
 public class Bomb : MonoBehaviour
 {
-
+    public Animator animator; 
     private ContactFilter2D contact2D;
     private Collider2D[] collisionList = new Collider2D[5];
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        animator.SetBool("explode", false);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+       
     }
 
     private void OnDestroy()
     {
+        animator.SetBool("explode", true);
        int collideNumber = Physics2D.OverlapArea(new Vector2(transform.position.x - 1.0f, transform.position.y-1.0f), new Vector2(transform.position.x + 1.0f, transform.position.y +1.0f), contact2D, collisionList);
         for (int i = 0; i < collideNumber; i++)
         {
@@ -43,4 +44,6 @@ public class Bomb : MonoBehaviour
             }
         }
     }
+
+
 }

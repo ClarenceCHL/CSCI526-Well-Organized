@@ -4,10 +4,13 @@ using UnityEngine;
 using UnityEngine.Analytics;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     //[SerializeField] Box box;
+
+    private Scene curScene;
 
     public GameObject objectToSpawn1;
     public GameObject objectToSpawn2;
@@ -70,6 +73,12 @@ public class GameManager : MonoBehaviour
         player2Score = 0;
         player1HP = 3;
         player2HP = 3;
+        curScene = SceneManager.GetActiveScene();
+        if (curScene.name == "teaching1" || curScene.name == "teaching2")
+        {
+            player1HP = 1;
+            player2HP = 1;
+        }
         P1HP.text = "P1 HP: " + player1HP;
         P2HP.text = "P2 HP: " + player2HP;
         P1RespawnPoint = new Vector3(-3.5f, 10.0f, 0.0f);
@@ -81,14 +90,19 @@ public class GameManager : MonoBehaviour
     {
 
         time += Time.deltaTime;
-        
-        if (time > nextDrop)
-        {
-            dropBox();
-            nextDrop = time + dropRate;
-        }
 
-        if(player1HP <= 0)
+        
+        if (curScene.name != "teaching1" && curScene.name != "teaching2")
+        {
+            if (time > nextDrop)
+            {
+                dropBox();
+                nextDrop = time + dropRate;
+            }
+        }      
+        
+
+        if (player1HP <= 0)
         {
             gameOver(2);
         }

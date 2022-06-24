@@ -24,6 +24,8 @@ public class PlayerController : MonoBehaviour
 
     private float horizontalInput;
 
+    public Animator animator; 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -38,6 +40,10 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        animator.SetBool("isLeft", false);
+        animator.SetBool("isRight", false);
+
+
         BombNumber.text = "BOMBS: " + P1BombCount;
         
         if (Input.GetKeyDown(KeyCode.LeftShift) && P1BombCount > 0 )
@@ -59,12 +65,19 @@ public class PlayerController : MonoBehaviour
         {
 
             moveDir = Vector2.right;
+
+            animator.SetBool("isRight", true);
+            animator.SetBool("isLeft", false);
+            
         }
 
         // move left
         if (Input.GetKey(KeyCode.A))
         {
             moveDir = Vector2.left;
+
+            animator.SetBool("isLeft", true);
+            animator.SetBool("isRight", false);
         }
 
 
@@ -124,7 +137,7 @@ public class PlayerController : MonoBehaviour
     void CanMoveInThisDir(Vector2 dir)
     {
         // detectLayer to avoid hit player
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, dir, 1.0f, detectLayer);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, dir, 0.55f, detectLayer);
         if (hit) 
        
         {
