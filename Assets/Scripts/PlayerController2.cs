@@ -56,8 +56,6 @@ public class PlayerController2 : MonoBehaviour
         {
             // Debug.Log("Space pressed");
             jump = true;
-            animator.SetBool("isRight", true);
-            animator.SetBool("isLeft", false);
         }
 
         // move right
@@ -65,6 +63,8 @@ public class PlayerController2 : MonoBehaviour
         {
 
             moveDir = Vector2.right;
+            animator.SetBool("isRight", true);
+            animator.SetBool("isLeft", false);
         }
 
         // move left
