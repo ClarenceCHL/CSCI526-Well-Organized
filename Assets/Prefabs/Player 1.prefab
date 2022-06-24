@@ -153,8 +153,9 @@ MonoBehaviour:
   detectLayer:
     serializedVersion: 2
     m_Bits: 1416
-  bomb: {fileID: 0}
+  bomb: {fileID: 1269088658977063868, guid: 3b48c4a2005acdd4794fc6b8041873e8, type: 3}
   groundCheckTransform: {fileID: 5461451016502562283}
+  animator: {fileID: 0}
 --- !u!1 &5461451015738546995
 GameObject:
   m_ObjectHideFlags: 0
