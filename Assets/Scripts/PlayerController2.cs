@@ -40,7 +40,7 @@ public class PlayerController2 : MonoBehaviour
     {
         BombNumber.text = "BOMBS: " + P2BombCount;
 
-        if (Input.GetKeyDown(KeyCode.LeftShift) && P2BombCount > 0)
+        if (Input.GetKeyDown(KeyCode.RightShift) && P2BombCount > 0)
         {
             Debug.Log("Bomb");
             layBomb = true;
@@ -126,7 +126,7 @@ public class PlayerController2 : MonoBehaviour
     void CanMoveInThisDir(Vector2 dir)
     {
         // detectLayer to avoid hit player
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, dir, 1.0f, detectLayer);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, dir, 0.55f, detectLayer);
         if (hit)
 
         {

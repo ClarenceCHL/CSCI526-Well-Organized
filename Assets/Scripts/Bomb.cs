@@ -27,6 +27,20 @@ public class Bomb : MonoBehaviour
         {
             if(collisionList[i].gameObject.layer == 7 || collisionList[i].gameObject.layer == 8)
                 Destroy(collisionList[i].gameObject);
+
+
+            if (collisionList[i].gameObject.name == "Player 1") //player1 
+            {
+                GameManager.Instance.lostHP(1);
+
+            }
+
+
+            if (collisionList[i].gameObject.name == "Player 2") //player2
+            {
+                GameManager.Instance.lostHP(2);
+
+            }
         }
     }
 }

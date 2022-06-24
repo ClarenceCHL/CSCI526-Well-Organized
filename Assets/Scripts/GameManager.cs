@@ -106,6 +106,11 @@ public class GameManager : MonoBehaviour
 
         GameObject newBox;
 
+        AnalyticsResult boxPosition = Analytics.CustomEvent("boxPosition", new Dictionary<string, object>
+        {
+            { SceneManager.GetActiveScene().name, xPos + boxType}
+        });
+
         if (boxType == 1)
         {
             newBox = Instantiate(objectToSpawn1, new Vector3(xPos, 15, 0), Quaternion.identity);
@@ -187,12 +192,18 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 0;
         if (i == 1)
         {
-            AnalyticsResult winPlayer = Analytics.CustomEvent("P1 win" + "Level: " + SceneManager.GetActiveScene().name);
+            AnalyticsResult winPlayer = Analytics.CustomEvent("winPlayer", new Dictionary<string, object>
+        {
+            { "P1 win", SceneManager.GetActiveScene().name}
+        });
             GameOverScreen1.Setup();
         }
         else
         {
-            AnalyticsResult winPlayer = Analytics.CustomEvent("P2 win" + "Level: " + SceneManager.GetActiveScene().name);
+            AnalyticsResult winPlayer = Analytics.CustomEvent("winPlayer", new Dictionary<string, object>
+        {
+            { "P2 win", SceneManager.GetActiveScene().name}
+        });
             GameOverScreen2.Setup();
         }
     }

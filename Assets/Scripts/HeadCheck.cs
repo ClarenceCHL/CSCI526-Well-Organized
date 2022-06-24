@@ -1,6 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Analytics;
+using UnityEngine.SceneManagement;
 
 public class HeadCheck : MonoBehaviour
 {
@@ -20,11 +23,19 @@ public class HeadCheck : MonoBehaviour
         {
             if (name == "HeadCheck1")
             {
+                AnalyticsResult DieType = Analytics.CustomEvent("DieType", new Dictionary<string, object>
+        {
+            { SceneManager.GetActiveScene().name, "Player1 Hit"}
+        });
                 GameManager.Instance.lostHP(1);
             }
             else if(name == "HeadCheck2")
             {
-                GameManager.Instance.lostHP(2);
+               AnalyticsResult DieType = Analytics.CustomEvent("DieType", new Dictionary<string, object>
+        {
+            { SceneManager.GetActiveScene().name, "Player2 Hit"}
+        });
+                    GameManager.Instance.lostHP(2);
             }
             
         }
