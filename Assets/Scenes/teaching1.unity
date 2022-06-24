@@ -191,8 +191,12 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5461451015212796075, guid: b28d84a1d50757a47b7930060346223f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -4.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5461451015212796075, guid: b28d84a1d50757a47b7930060346223f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.5
+      value: -3.5
       objectReference: {fileID: 0}
     - target: {fileID: 5461451015212796079, guid: b28d84a1d50757a47b7930060346223f, type: 3}
       propertyPath: bomb
@@ -1290,6 +1294,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &145593234 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8729666887884528554, guid: 784beaa1569cf064db817b26ff2f256b, type: 3}
+  m_PrefabInstance: {fileID: 2611531487970373117}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &246594669
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2852,6 +2861,18 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1725937647}
     - target: {fileID: 3102306460405180070, guid: 1735ddf24108a8e4292c4676165f5691, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3102306460405180070, guid: 1735ddf24108a8e4292c4676165f5691, type: 3}
+      propertyPath: objectToSpawn1
+      value: 
+      objectReference: {fileID: 1478865616}
+    - target: {fileID: 3102306460405180070, guid: 1735ddf24108a8e4292c4676165f5691, type: 3}
+      propertyPath: objectToSpawn2
+      value: 
+      objectReference: {fileID: 145593234}
+    - target: {fileID: 3102306460405180070, guid: 1735ddf24108a8e4292c4676165f5691, type: 3}
       propertyPath: GameOverScreen1
       value: 
       objectReference: {fileID: 1482063638}
@@ -4046,6 +4067,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c6406903432a4749afab76614975398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 0}
 --- !u!1001 &1422849236
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4353,6 +4375,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a79131c70f840f041a608d7e312f1af1, type: 3}
+--- !u!1 &1478865616 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3427563976384145307, guid: a79131c70f840f041a608d7e312f1af1, type: 3}
+  m_PrefabInstance: {fileID: 8253163543426592070}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1482063638 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 404027925277259042, guid: 175978071c3ddc848933c43402c08420, type: 3}
@@ -4950,8 +4977,12 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7551372895424688854, guid: ffbaa922f5964c04b9f7497d73345e01, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 4.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7551372895424688854, guid: ffbaa922f5964c04b9f7497d73345e01, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.5
+      value: -3.5
       objectReference: {fileID: 0}
     - target: {fileID: 7551372895424688858, guid: ffbaa922f5964c04b9f7497d73345e01, type: 3}
       propertyPath: bomb
