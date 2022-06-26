@@ -79,6 +79,17 @@ public class GameManager : MonoBehaviour
             player1HP = 1;
             player2HP = 1;
         }
+        if (curScene.name == "teaching2")
+        {
+            string str_bomb = "Bomb";
+            for (int i = 1; i <= 5; i++)
+            {
+                string bombObj = str_bomb + i;
+                GameObject Bomb = GameObject.Find(bombObj);
+                Destroy(Bomb, 2);
+            }
+
+        }
         P1HP.text = "P1 HP: " + player1HP;
         P2HP.text = "P2 HP: " + player2HP;
         P1RespawnPoint = new Vector3(-3.5f, 10.0f, 0.0f);
