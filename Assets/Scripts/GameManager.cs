@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.Analytics;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -92,8 +91,8 @@ public class GameManager : MonoBehaviour
         }
         P1HP.text = "P1 HP: " + player1HP;
         P2HP.text = "P2 HP: " + player2HP;
-        P1RespawnPoint = new Vector3(-3.5f, 10.0f, 0.0f);
-        P2RespawnPoint = new Vector3(3.5f, 10.0f, 0.0f);
+        P1RespawnPoint = new Vector3(-3.5f, 7.0f, 0.0f);
+        P2RespawnPoint = new Vector3(3.5f, 7.0f, 0.0f);
     }
 
     // Update is called once per frame
