@@ -214,41 +214,22 @@ public class GameManager : MonoBehaviour
     {
         Timer.instance.EndTimer();
         Time.timeScale = 0;
-
-        int winnerScore = 0;
-        int loserScore = 0;
         if (i == 1)
         {
             AnalyticsResult winPlayer = Analytics.CustomEvent("winPlayer", new Dictionary<string, object>
-            {
-                { "P1 win", SceneManager.GetActiveScene().name}
-            });
-            
-            winnerScore = player1Score;
-            loserScore = player2Score;
-            
+        {
+            { "P1 win", SceneManager.GetActiveScene().name}
+        });
             GameOverScreen1.Setup();
         }
         else
         {
             AnalyticsResult winPlayer = Analytics.CustomEvent("winPlayer", new Dictionary<string, object>
-            {
-                { "P2 win", SceneManager.GetActiveScene().name}
-            });
-            //Analytics of winner and their score
-            
-            winnerScore = player2Score;
-            loserScore = player1Score;
-
+        {
+            { "P2 win", SceneManager.GetActiveScene().name}
+        });
             GameOverScreen2.Setup();
         }
-        
-        //Analytics of winner and their score
-        Analytics.CustomEvent("score&win", new Dictionary<string, object>
-        {
-            { "winPlayerScore", winnerScore},
-            { "losePlayerScore", loserScore}
-        });
     }
 
     /*public List<Box> checkMatched(Box box)
