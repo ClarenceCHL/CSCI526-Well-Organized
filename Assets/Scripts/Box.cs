@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Analytics;
+using UnityEngine.SceneManagement;
 
 public class Box : MonoBehaviour
 {
@@ -109,7 +111,7 @@ public class Box : MonoBehaviour
             collideNumber = Physics2D.OverlapArea(new Vector2(horizontalCheck.position.x - 2.0f, horizontalCheck.position.y),
                                                   new Vector2(horizontalCheck.position.x + 2.0f, horizontalCheck.position.y - 0.05f),
                                                   contact2D, collisionList);
-
+            
             for (int i = 0; i < collideNumber; i++)
             {
                 Rigidbody2D rb = collisionList[i].GetComponent<Rigidbody2D>();
@@ -122,7 +124,15 @@ public class Box : MonoBehaviour
             if (destroy)
             {
 
-
+                // Horizontal analytics
+                
+                Analytics.CustomEvent("boxDestroyedH", new Dictionary<string, object>
+                {
+                    { "num_boxes", collideNumber},
+                    {"level", SceneManager.GetActiveScene().name}
+                });
+                
+                
                 destroying = true;
 
                 if (collisionList[0].gameObject.layer == 7) //box1
@@ -204,6 +214,13 @@ public class Box : MonoBehaviour
             if (destroy)
             {
                 destroying = true;
+                
+                // Vertical Analytics
+                Analytics.CustomEvent("boxDestroyedV", new Dictionary<string, object>
+                {
+                    { "num_boxes", collideNumber},
+                    {"level", SceneManager.GetActiveScene().name}
+                });
 
                 if (collisionList[0].gameObject.layer == 7) //box1
                 {
