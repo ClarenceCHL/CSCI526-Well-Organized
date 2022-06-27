@@ -32,14 +32,21 @@ public class Bomb : MonoBehaviour
 
             if (collisionList[i].gameObject.name == "Player 1") //player1 
             {
-                GameManager.Instance.lostHP(1);
+                if(this.gameObject.name == "P2_Bomb(Clone)")
+                {
+                    GameManager.Instance.lostHP(1);
+                }
+               
 
             }
 
 
             if (collisionList[i].gameObject.name == "Player 2") //player2
             {
-                GameManager.Instance.lostHP(2);
+                if (this.gameObject.name == "P1_Bomb(Clone)")
+                {
+                    GameManager.Instance.lostHP(2);
+                }
 
             }
         }
