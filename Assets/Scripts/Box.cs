@@ -255,7 +255,6 @@ public class Box : MonoBehaviour
                     if (GlobalVariables.P1MatchCount >= 2)
                     {
                         player1.P1BombCount++;
-
                         GlobalVariables.P1MatchCount -= 2;
                     }
                 }
