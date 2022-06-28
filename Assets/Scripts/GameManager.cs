@@ -38,12 +38,20 @@ public class GameManager : MonoBehaviour
     public GameOverScreen GameOverScreen1;
     public GameOverScreen GameOverScreen2;
 
+    public Camera mainCamera;
+    public RectTransform parentCanvas;
+    public GameObject P1BombAdd;
+    public GameObject P2BombAdd;
+
     //public GameObject shoko;
     //public GameObject player;
     //public GameObject mainCamera;
 
     int boxCount = 0;
-    float time = 0;
+    float time = 0.0f;
+
+    float width = 0.0f;
+    float height = 0.0f;
 
     //public List<Box> boxList = new List<Box>();
 
@@ -93,6 +101,8 @@ public class GameManager : MonoBehaviour
         P2HP.text = "P2 HP: " + player2HP;
         P1RespawnPoint = new Vector3(-3.5f, 7.0f, 0.0f);
         P2RespawnPoint = new Vector3(3.5f, 7.0f, 0.0f);
+        width = parentCanvas.sizeDelta.x;
+        height = parentCanvas.sizeDelta.y;
     }
 
     // Update is called once per frame
@@ -156,11 +166,13 @@ public class GameManager : MonoBehaviour
         {
             player1Score += 10;
             P1Score.text = "P1 Score: " + player1Score;
+            StartCoroutine(playerBombAdd(i));
         }
-        else
+        else if(i == 2)
         {
             player2Score += 10;
             P2Score.text = "P2 Score: " + player2Score;
+            StartCoroutine(playerBombAdd(i));
         }
     }
 
@@ -184,6 +196,29 @@ public class GameManager : MonoBehaviour
                 player2HP--;
                 P2HP.text = "P2 HP: " + player2HP;
             }
+        }
+        
+    }
+
+    IEnumerator playerBombAdd(int i)
+    {
+        if (i == 1)
+        {
+            Vector3 playerPos = new Vector3(player1.transform.position.x - 1.0f, player1.transform.position.y + 1.0f, player1.transform.position.z);
+            Vector3 pos = mainCamera.WorldToScreenPoint(playerPos);
+            P1BombAdd.transform.position = pos;
+            P1BombAdd.SetActive(true);
+            yield return new WaitForSeconds(2.0f);
+            P1BombAdd.SetActive(false);
+        }
+        else if (i == 2)
+        {
+            Vector3 playerPos = new Vector3(player2.transform.position.x - 1.0f, player2.transform.position.y + 1.0f, player2.transform.position.z);
+            Vector3 pos = mainCamera.WorldToScreenPoint(playerPos);
+            P2BombAdd.transform.position = pos;
+            P2BombAdd.SetActive(true);
+            yield return new WaitForSeconds(2.0f);
+            P2BombAdd.SetActive(false);
         }
         
     }
@@ -214,41 +249,22 @@ public class GameManager : MonoBehaviour
     {
         Timer.instance.EndTimer();
         Time.timeScale = 0;
-
-        int winnerScore = 0;
-        int loserScore = 0;
         if (i == 1)
         {
             AnalyticsResult winPlayer = Analytics.CustomEvent("winPlayer", new Dictionary<string, object>
-            {
-                { "P1 win", SceneManager.GetActiveScene().name}
-            });
-            
-            winnerScore = player1Score;
-            loserScore = player2Score;
-            
+        {
+            { "P1 win", SceneManager.GetActiveScene().name}
+        });
             GameOverScreen1.Setup();
         }
         else
         {
             AnalyticsResult winPlayer = Analytics.CustomEvent("winPlayer", new Dictionary<string, object>
-            {
-                { "P2 win", SceneManager.GetActiveScene().name}
-            });
-            //Analytics of winner and their score
-            
-            winnerScore = player2Score;
-            loserScore = player1Score;
-
+        {
+            { "P2 win", SceneManager.GetActiveScene().name}
+        });
             GameOverScreen2.Setup();
         }
-        
-        //Analytics of winner and their score
-        Analytics.CustomEvent("score&win", new Dictionary<string, object>
-        {
-            { "winPlayerScore", winnerScore},
-            { "losePlayerScore", loserScore}
-        });
     }
 
     /*public List<Box> checkMatched(Box box)
