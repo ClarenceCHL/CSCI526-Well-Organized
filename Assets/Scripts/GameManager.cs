@@ -49,9 +49,6 @@ public class GameManager : MonoBehaviour
     public GameObject P1BombAdd;
     public GameObject P2BombAdd;
 
-    public PlayerController player1Controller;
-    public PlayerController2 player2Controller;
-
     //public GameObject shoko;
     //public GameObject player;
     //public GameObject mainCamera;

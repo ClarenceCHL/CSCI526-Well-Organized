@@ -210,7 +210,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1000
+  m_Mass: 10000
   m_LinearDrag: 0
   m_AngularDrag: 0
   m_GravityScale: 0.1
@@ -232,6 +232,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player1: {fileID: 15597868858558632, guid: b28d84a1d50757a47b7930060346223f, type: 3}
+  player2: {fileID: 0}
   detectLayer:
     serializedVersion: 2
     m_Bits: 392
