@@ -1506,11 +1506,11 @@ PrefabInstance:
     - target: {fileID: 3102306460405180070, guid: 1735ddf24108a8e4292c4676165f5691, type: 3}
       propertyPath: GameOverScreen1
       value: 
-      objectReference: {fileID: 316252453}
+      objectReference: {fileID: 316252452}
     - target: {fileID: 3102306460405180070, guid: 1735ddf24108a8e4292c4676165f5691, type: 3}
       propertyPath: GameOverScreen2
       value: 
-      objectReference: {fileID: 316252452}
+      objectReference: {fileID: 316252453}
     - target: {fileID: 3102306460405180070, guid: 1735ddf24108a8e4292c4676165f5691, type: 3}
       propertyPath: playerController
       value: 
