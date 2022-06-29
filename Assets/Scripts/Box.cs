@@ -178,8 +178,6 @@ public class Box : MonoBehaviour
                         player2.P2BombCount += 10;
                         GlobalVariables.P2MatchCount--;
                     }
-                    Debug.Log(player2.P2BombCount);
-
                     if (GlobalVariables.P2MatchCount >= 2)
                     {
                         player2.P2BombCount++;
