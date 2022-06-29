@@ -30,11 +30,6 @@ public class PlayerController2 : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         Timer.instance.BeginTimer();
-        Scene curScene = SceneManager.GetActiveScene();
-        if (curScene.name == "teaching2")
-        {
-            P2BombCount = 100;
-        }
     }
 
 

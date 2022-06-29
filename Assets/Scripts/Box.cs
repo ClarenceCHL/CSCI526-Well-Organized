@@ -171,6 +171,14 @@ public class Box : MonoBehaviour
                 else
                 {
                     GlobalVariables.P2MatchCount++;
+                    Scene curScene = SceneManager.GetActiveScene();
+                    
+                    if (GlobalVariables.P2MatchCount == 1 && curScene.name == "teaching2")
+                    {
+                        player2.P2BombCount += 10;
+                        GlobalVariables.P2MatchCount--;
+                    }
+                    Debug.Log(player2.P2BombCount);
 
                     if (GlobalVariables.P2MatchCount >= 2)
                     {
@@ -261,7 +269,6 @@ public class Box : MonoBehaviour
                 else
                 {
                     GlobalVariables.P2MatchCount++;
-
                     if (GlobalVariables.P2MatchCount >= 2)
                     {
                         player2.P2BombCount++;
