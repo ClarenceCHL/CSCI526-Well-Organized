@@ -61,5 +61,5 @@ public class LevelSelect : MonoBehaviour
         Time.timeScale = 1.0f;
         GlobalVariables.P1MatchCount = 0;
     }
-    
+
 }
