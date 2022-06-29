@@ -262,7 +262,8 @@ public class Box : MonoBehaviour
                         player1.P1BombCount++;
                         _gameManager.showBombPlus(1);
                         //GlobalVariables.P1MatchCount -= 2;
-                        
+
+                        _gameManager.gainBomb(1);
                     }
                 }
                 else
@@ -273,7 +274,8 @@ public class Box : MonoBehaviour
                         player2.P2BombCount++;
                         _gameManager.showBombPlus(2);
                         //GlobalVariables.P2MatchCount -= 2;
-                        
+
+                        _gameManager.gainBomb(2);
                     }
 
 

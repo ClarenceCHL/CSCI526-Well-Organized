@@ -31,7 +31,13 @@ public class GameManager : MonoBehaviour
 
     private int player1HP;
     private int player2HP;
-
+    
+    //for analytics
+    private int player1BombGained;
+    private int player2BombGained;
+    private int player1BombUsed;
+    private int player2BombUsed;
+    
     private Vector3 P1RespawnPoint;
     private Vector3 P2RespawnPoint;
 
@@ -42,6 +48,9 @@ public class GameManager : MonoBehaviour
     public RectTransform parentCanvas;
     public GameObject P1BombAdd;
     public GameObject P2BombAdd;
+
+    public PlayerController player1Controller;
+    public PlayerController2 player2Controller;
 
     //public GameObject shoko;
     //public GameObject player;
@@ -206,6 +215,28 @@ public class GameManager : MonoBehaviour
         
     }
 
+    public void gainBomb(int playerID)
+    {
+        if (playerID == 1)
+        {
+            player1BombGained += 1;
+        } else
+        {
+            player2BombGained += 1;
+        }
+    }
+
+    public void useBomb(int playerID)
+    {
+        if (playerID == 1)
+        {
+            player1BombUsed += 1;
+        } else
+        {
+            player2BombUsed += 1;
+        }
+    }
+
     IEnumerator playerBombAdd(int i)
     { 
         if (i == 1)
@@ -255,12 +286,30 @@ public class GameManager : MonoBehaviour
     {
         Timer.instance.EndTimer();
         Time.timeScale = 0;
+
+        int winnerScore;
+        int winnerBombGained;
+        int winnerBombUsed;
+        
+        int loserScore;
+        int loserBombGained;
+        int loserBombUsed;
+        
         if (i == 1)
         {
             AnalyticsResult winPlayer = Analytics.CustomEvent("winPlayer", new Dictionary<string, object>
         {
             { "P1 win", SceneManager.GetActiveScene().name}
         });
+
+            winnerScore = player1Score;
+            winnerBombGained = player1BombGained;
+            winnerBombUsed = player1BombUsed;
+            
+            loserScore = player2Score;
+            loserBombGained = player2BombGained;
+            loserBombUsed = player2BombUsed;
+            
             GameOverScreen1.Setup();
         }
         else
@@ -269,8 +318,33 @@ public class GameManager : MonoBehaviour
         {
             { "P2 win", SceneManager.GetActiveScene().name}
         });
+            winnerScore = player2Score;
+            winnerBombGained = player2BombGained;
+            winnerBombUsed = player2BombUsed;
+            
+            loserScore = player1Score;
+            loserBombGained = player1BombGained;
+            loserBombUsed = player1BombUsed;
             GameOverScreen2.Setup();
         }
+
+        Debug.Log(winnerBombGained);
+        Debug.Log(loserBombGained);
+        Analytics.CustomEvent("score&win", new Dictionary<string, object>
+        {
+            { "winnerScore", winnerScore},
+            {"loserScore", loserScore}
+        });
+        
+        Analytics.CustomEvent("bomb&win", new Dictionary<string, object>
+        {
+            {"winnerGainedBombs", winnerBombGained},
+            {"winnerUsedBomb", winnerBombUsed},
+            {"loserGainedBombs", loserBombGained},
+            {"loserUsedBomb", loserBombUsed}
+        });
+        
+        
     }
 
     /*public List<Box> checkMatched(Box box)
