@@ -249,7 +249,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 67274461}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 291c492ddb7204918872467fb33c43c7, type: 3}
+  m_Script: {fileID: 11500000, guid: 9a58a15c2b33c455f9109aa4b04329b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &67274464
@@ -441,7 +441,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u64CD\u4F5C\u4ECB\u7ECD"
+  m_Text: 
 --- !u!222 &447740492
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1311,7 +1311,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1401909279
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1331,8 +1331,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 70.131, y: 81.574}
-  m_SizeDelta: {x: 1779.7375, y: 910.1214}
+  m_AnchoredPosition: {x: 282.78345, y: 84.72439}
+  m_SizeDelta: {x: 1354.4324, y: 903.8205}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1401909280
 MonoBehaviour:
@@ -1343,7 +1343,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1401909278}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 291c492ddb7204918872467fb33c43c7, type: 3}
+  m_Script: {fileID: 11500000, guid: 9a58a15c2b33c455f9109aa4b04329b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &1401909281
@@ -1359,14 +1359,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.8207547, g: 0.3987629, b: 0.3987629, a: 0.54509807}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: bd36ea705c9b54a3a98749a79a0337ec, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1908,7 +1908,7 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 0}
-    m_HighlightedColor: {r: 0.1254902, g: 0.1254902, b: 0.1254902, a: 0.49803922}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 0.49803922}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.3764706}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 0.5176471}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
