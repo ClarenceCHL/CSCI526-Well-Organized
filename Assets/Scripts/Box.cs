@@ -161,11 +161,11 @@ public class Box : MonoBehaviour
                 {
                     GlobalVariables.P1MatchCount++;
 
-                    if (GlobalVariables.P1MatchCount >= 2)
+                    if (GlobalVariables.P1MatchCount > 0 && GlobalVariables.P1MatchCount % 2 == 0)
                     {
                         player1.P1BombCount++;
-
-                        GlobalVariables.P1MatchCount -= 2;
+                        _gameManager.showBombPlus(1);
+                        //GlobalVariables.P1MatchCount -= 2;
                     }
                 }
                 else
@@ -178,11 +178,11 @@ public class Box : MonoBehaviour
                         player2.P2BombCount += 10;
                         GlobalVariables.P2MatchCount--;
                     }
-                    if (GlobalVariables.P2MatchCount >= 2)
+                    if (GlobalVariables.P2MatchCount > 0 && GlobalVariables.P2MatchCount % 2 == 0)
                     {
                         player2.P2BombCount++;
-
-                        GlobalVariables.P2MatchCount -= 2;
+                        _gameManager.showBombPlus(2);
+                        //GlobalVariables.P2MatchCount -= 2;
 
                     }
 
@@ -257,22 +257,23 @@ public class Box : MonoBehaviour
                 if (isPlayer1)
                 {
                     GlobalVariables.P1MatchCount++;
-
-                    if (GlobalVariables.P1MatchCount >= 2)
+                    if (GlobalVariables.P1MatchCount > 0 && GlobalVariables.P1MatchCount % 2 == 0)
                     {
                         player1.P1BombCount++;
-                        GlobalVariables.P1MatchCount -= 2;
+                        _gameManager.showBombPlus(1);
+                        //GlobalVariables.P1MatchCount -= 2;
+                        
                     }
                 }
                 else
                 {
                     GlobalVariables.P2MatchCount++;
-                    if (GlobalVariables.P2MatchCount >= 2)
+                    if (GlobalVariables.P2MatchCount > 0 && GlobalVariables.P2MatchCount % 2 == 0)
                     {
                         player2.P2BombCount++;
-
-                        GlobalVariables.P2MatchCount -= 2;
-
+                        _gameManager.showBombPlus(2);
+                        //GlobalVariables.P2MatchCount -= 2;
+                        
                     }
 
 

@@ -130,6 +130,7 @@ public class GameManager : MonoBehaviour
         {
             gameOver(1);
         }
+
     }
 
     void dropBox()
@@ -166,14 +167,19 @@ public class GameManager : MonoBehaviour
         {
             player1Score += 10;
             P1Score.text = "P1 Score: " + player1Score;
-            StartCoroutine(playerBombAdd(i));
         }
         else if(i == 2)
         {
             player2Score += 10;
             P2Score.text = "P2 Score: " + player2Score;
-            StartCoroutine(playerBombAdd(i));
         }
+    }
+
+    public void showBombPlus(int i)
+    {
+        Debug.Log("showup");
+        StartCoroutine(playerBombAdd(i));
+
     }
 
     public void lostHP(int playerID)
@@ -201,7 +207,7 @@ public class GameManager : MonoBehaviour
     }
 
     IEnumerator playerBombAdd(int i)
-    {
+    { 
         if (i == 1)
         {
             Vector3 playerPos = new Vector3(player1.transform.position.x - 1.0f, player1.transform.position.y + 1.0f, player1.transform.position.z);
