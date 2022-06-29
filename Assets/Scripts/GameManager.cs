@@ -108,8 +108,8 @@ public class GameManager : MonoBehaviour
         }
         P1HP.text = "P1 HP: " + player1HP;
         P2HP.text = "P2 HP: " + player2HP;
-        P1RespawnPoint = new Vector3(-3.5f, 7.0f, 0.0f);
-        P2RespawnPoint = new Vector3(3.5f, 7.0f, 0.0f);
+        P1RespawnPoint = new Vector3(-3.5f, 5.0f, 0.0f);
+        P2RespawnPoint = new Vector3(3.5f, 5.0f, 0.0f);
         width = parentCanvas.sizeDelta.x;
         height = parentCanvas.sizeDelta.y;
     }
