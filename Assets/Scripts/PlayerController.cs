@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     public Text BombNumber;
     public int P1BombCount =0;
 
+    
     Vector2 moveDir; // move direction
     public LayerMask detectLayer;
     private bool jump;
