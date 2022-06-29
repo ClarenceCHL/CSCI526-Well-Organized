@@ -12,4 +12,14 @@ public class Kaiguan : MonoBehaviour
     public void kaiguan2(){
        gameObject.SetActive(false);
    }
+    
+    public void kaiguan3(){
+       gameObject.SetActive(true);
+   }
+   
+   public void kaiguan4(){
+       gameObject.SetActive(false);
+   }
+
+	
 }

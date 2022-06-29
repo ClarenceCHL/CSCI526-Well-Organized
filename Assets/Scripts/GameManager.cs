@@ -89,7 +89,7 @@ public class GameManager : MonoBehaviour
         if (curScene.name == "teaching2")
         {
             string str_bomb = "Bomb";
-            for (int i = 1; i <= 6; i++)
+            for (int i = 1; i <= 8; i++)
             {
                 string bombObj = str_bomb + i;
                 GameObject Bomb = GameObject.Find(bombObj);
