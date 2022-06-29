@@ -2011,6 +2011,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3997036117995413208, guid: 1942af9722a3acb4da50f58c77d667c6, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 436c96d61d2a64f4cad257e23f526023, type: 2}
     - target: {fileID: 3997036117995413215, guid: 1942af9722a3acb4da50f58c77d667c6, type: 3}
       propertyPath: m_Name
       value: P2_Bomb
