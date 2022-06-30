@@ -48,6 +48,7 @@ public class GameManager : MonoBehaviour
     public RectTransform parentCanvas;
     public GameObject P1BombAdd;
     public GameObject P2BombAdd;
+    public GameObject TeachingBombAdd;
 
     //public GameObject shoko;
     //public GameObject player;
@@ -254,7 +255,16 @@ public class GameManager : MonoBehaviour
             yield return new WaitForSeconds(2.0f);
             P2BombAdd.SetActive(false);
         }
-        
+        else if (i == 3)
+        {
+            Vector3 playerPos = new Vector3(player2.transform.position.x - 1.0f, player2.transform.position.y + 1.0f, player2.transform.position.z);
+            Vector3 pos = mainCamera.WorldToScreenPoint(playerPos);
+            TeachingBombAdd.transform.position = pos;
+            TeachingBombAdd.SetActive(true);
+            yield return new WaitForSeconds(2.0f);
+            TeachingBombAdd.SetActive(false);
+        }
+
     }
 
     IEnumerator player1Respawn(float timeInMS)

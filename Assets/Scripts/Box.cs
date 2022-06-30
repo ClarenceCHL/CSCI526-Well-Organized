@@ -176,6 +176,7 @@ public class Box : MonoBehaviour
                     if (GlobalVariables.P2MatchCount == 1 && curScene.name == "teaching2")
                     {
                         player2.P2BombCount += 10;
+                        _gameManager.showBombPlus(3);
                         GlobalVariables.P2MatchCount--;
                     }
                     if (GlobalVariables.P2MatchCount > 0 && GlobalVariables.P2MatchCount % 2 == 0)
