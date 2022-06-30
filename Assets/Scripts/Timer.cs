@@ -1,9 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Services.Analytics;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.Analytics;
 using UnityEngine.SceneManagement;
 
 public class Timer : MonoBehaviour
@@ -35,7 +35,7 @@ public class Timer : MonoBehaviour
 
     public void EndTimer()
     {
-        Analytics.CustomEvent("level&time", new Dictionary<string, object>
+        AnalyticsService.Instance.CustomData("level&time", new Dictionary<string, object>
         {
             {"DieTime", TimeSpan.FromSeconds(elapsedTime)},
             {"level", SceneManager.GetActiveScene().name}

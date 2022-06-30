@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Services.Analytics;
 using UnityEngine;
-using UnityEngine.Analytics;
 using UnityEngine.SceneManagement;
 
 public class Box : MonoBehaviour
@@ -128,7 +128,7 @@ public class Box : MonoBehaviour
 
                 // Horizontal analytics
                 
-                Analytics.CustomEvent("boxDestroyedH", new Dictionary<string, object>
+                AnalyticsService.Instance.CustomData("boxDestroyedH", new Dictionary<string, object>
                 {
                     { "num_boxes", collideNumber},
                     {"level", SceneManager.GetActiveScene().name}
@@ -225,7 +225,7 @@ public class Box : MonoBehaviour
                 destroying = true;
                 
                 // Vertical Analytics
-                Analytics.CustomEvent("boxDestroyedV", new Dictionary<string, object>
+                AnalyticsService.Instance.CustomData("boxDestroyedV", new Dictionary<string, object>
                 {
                     { "num_boxes", collideNumber},
                     {"level", SceneManager.GetActiveScene().name}

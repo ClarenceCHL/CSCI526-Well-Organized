@@ -165,7 +165,7 @@ public class GameManager : MonoBehaviour
 
         GameObject newBox;
 
-        AnalyticsResult boxPosition = Analytics.CustomEvent("boxPosition", new Dictionary<string, object>
+        AnalyticsService.Instance.CustomData("boxPosition", new Dictionary<string, object>
         {
             { SceneManager.GetActiveScene().name, xPos + boxType}
         });

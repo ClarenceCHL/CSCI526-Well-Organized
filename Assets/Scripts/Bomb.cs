@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Services.Analytics;
 using UnityEngine;
-using UnityEngine.Analytics;
 using UnityEngine.SceneManagement;
 
 public class Bomb : MonoBehaviour
@@ -38,7 +38,7 @@ public class Bomb : MonoBehaviour
                 {
                     GameManager.Instance.lostHP(1);
                     
-                    Analytics.CustomEvent("lostHP", new Dictionary<string, object>
+                    AnalyticsService.Instance.CustomData("lostHP", new Dictionary<string, object>
                     {
                         {"level", SceneManager.GetActiveScene().name},
                         {"reason", "HitByBomb"},
@@ -56,7 +56,7 @@ public class Bomb : MonoBehaviour
                 {
                     GameManager.Instance.lostHP(2);
                     
-                    Analytics.CustomEvent("lostHP", new Dictionary<string, object>
+                    AnalyticsService.Instance.CustomData("lostHP", new Dictionary<string, object>
                     {
                         {"level", SceneManager.GetActiveScene().name},
                         {"reason", "HitByBomb"},
