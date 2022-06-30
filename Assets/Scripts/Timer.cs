@@ -35,10 +35,11 @@ public class Timer : MonoBehaviour
 
     public void EndTimer()
     {
-        AnalyticsResult analyticsResult = Analytics.CustomEvent("DieTime" + TimeSpan.FromSeconds(elapsedTime) + "Level: " + SceneManager.GetActiveScene().name);
-        AnalyticsResult score = Analytics.CustomEvent("P1 score: " + GameManager.Instance.P1Score + "P2 score: " + GameManager.Instance.P2Score);
-        Debug.Log("Analytics: " + analyticsResult);
-        Debug.Log(score);
+        Analytics.CustomEvent("level&time", new Dictionary<string, object>
+        {
+            {"DieTime", TimeSpan.FromSeconds(elapsedTime)},
+            {"level", SceneManager.GetActiveScene().name}
+        });
         timerGoing = false;
     }
 

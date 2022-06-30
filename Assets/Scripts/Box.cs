@@ -22,6 +22,8 @@ public class Box : MonoBehaviour
 
     private bool matched;
 
+    private Scene curScene;
+
     public void Start()
     {
 
@@ -157,6 +159,10 @@ public class Box : MonoBehaviour
                         _gameManager.addScore(2);
                     }
                 }
+                if(SceneManager.GetActiveScene().name == "teaching1")
+                {
+                    return;
+                }
                 if (isPlayer1)
                 {
                     GlobalVariables.P1MatchCount++;
@@ -171,11 +177,12 @@ public class Box : MonoBehaviour
                 else
                 {
                     GlobalVariables.P2MatchCount++;
-                    Scene curScene = SceneManager.GetActiveScene();
+                    curScene = SceneManager.GetActiveScene();
                     
                     if (GlobalVariables.P2MatchCount == 1 && curScene.name == "teaching2")
                     {
                         player2.P2BombCount += 10;
+                        _gameManager.showBombPlus(3);
                         GlobalVariables.P2MatchCount--;
                     }
                     if (GlobalVariables.P2MatchCount > 0 && GlobalVariables.P2MatchCount % 2 == 0)
@@ -185,11 +192,7 @@ public class Box : MonoBehaviour
                         //GlobalVariables.P2MatchCount -= 2;
 
                     }
-
-
-
                 }
-
             }
             else
             {
@@ -253,6 +256,10 @@ public class Box : MonoBehaviour
                             _gameManager.addScore(2);
                         }
                     }
+                }
+                if (SceneManager.GetActiveScene().name == "teaching1")
+                {
+                    return;
                 }
                 if (isPlayer1)
                 {
