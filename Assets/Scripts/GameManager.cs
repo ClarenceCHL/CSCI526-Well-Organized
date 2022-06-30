@@ -1,5 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+
+using Unity.Services.Analytics;
+using Unity.Services.Core;
+
 using UnityEngine;
 using UnityEngine.Analytics;
 using UnityEngine.SceneManagement;
@@ -111,6 +115,19 @@ public class GameManager : MonoBehaviour
         height = parentCanvas.sizeDelta.y;
     }
 
+    async void startServices()
+    {
+        try
+        {
+            await UnityServices.InitializeAsync();
+            List<string> consentIdentifiers = await AnalyticsService.Instance.CheckForRequiredConsents();
+        }
+        catch (ConsentCheckException e)
+        {
+            // Something went wrong when checking the GeoIP, check the e.Reason and handle appropriately.
+        }
+    }
+    
     // Update is called once per frame
     void FixedUpdate()
     {
@@ -294,7 +311,7 @@ public class GameManager : MonoBehaviour
         
         if (i == 1)
         {
-            AnalyticsResult winPlayer = Analytics.CustomEvent("winPlayer", new Dictionary<string, object>
+            AnalyticsService.Instance.CustomData("winPlayer", new Dictionary<string, object>
         {
             { "P1 win", SceneManager.GetActiveScene().name}
         });
@@ -311,7 +328,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            AnalyticsResult winPlayer = Analytics.CustomEvent("winPlayer", new Dictionary<string, object>
+            AnalyticsService.Instance.CustomData("winPlayer", new Dictionary<string, object>
         {
             { "P2 win", SceneManager.GetActiveScene().name}
         });
@@ -327,20 +344,20 @@ public class GameManager : MonoBehaviour
 
         Debug.Log(winnerBombGained);
         Debug.Log(loserBombGained);
-        Analytics.CustomEvent("score&win", new Dictionary<string, object>
+        AnalyticsService.Instance.CustomData("score&win", new Dictionary<string, object>
         {
             { "winnerScore", winnerScore},
             {"loserScore", loserScore}
         });
         
-        Analytics.CustomEvent("bomb&win", new Dictionary<string, object>
+        AnalyticsService.Instance.CustomData("bomb&win", new Dictionary<string, object>
         {
             {"winnerGainedBombs", winnerBombGained},
             {"winnerUsedBomb", winnerBombUsed},
             {"loserGainedBombs", loserBombGained},
             {"loserUsedBomb", loserBombUsed}
         });
-        
+        AnalyticsService.Instance.Flush();
         
     }
 
