@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Analytics;
+using UnityEngine.SceneManagement;
 
 public class Bomb : MonoBehaviour
 {
@@ -35,6 +37,13 @@ public class Bomb : MonoBehaviour
                 if(this.gameObject.name == "P2_Bomb(Clone)")
                 {
                     GameManager.Instance.lostHP(1);
+                    
+                    Analytics.CustomEvent("lostHP", new Dictionary<string, object>
+                    {
+                        {"level", SceneManager.GetActiveScene().name},
+                        {"reason", "HitByBomb"},
+                        {"Player", 1}
+                    });
                 }
                
 
@@ -46,6 +55,13 @@ public class Bomb : MonoBehaviour
                 if (this.gameObject.name == "P1_Bomb(Clone)")
                 {
                     GameManager.Instance.lostHP(2);
+                    
+                    Analytics.CustomEvent("lostHP", new Dictionary<string, object>
+                    {
+                        {"level", SceneManager.GetActiveScene().name},
+                        {"reason", "HitByBomb"},
+                        {"Player", 2}
+                    });
                 }
 
             }
