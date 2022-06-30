@@ -194,7 +194,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: TEACHING LEVEL 2
+  m_Text: TUTORIAL 2
 --- !u!222 &30354696
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -324,7 +324,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 53.67301, y: -512.1526}
+  m_AnchoredPosition: {x: 12.999977, y: -515.30365}
   m_SizeDelta: {x: 244.546, y: 42.3052}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &263362620
@@ -873,7 +873,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 53.67301, y: -552.84894}
+  m_AnchoredPosition: {x: 13, y: -556}
   m_SizeDelta: {x: 244.55, y: 39.0779}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &844377671
@@ -1491,7 +1491,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: ' TEACHING  LEVEL 1'
+  m_Text: TUTORIAL 1
 --- !u!222 &1336091464
 CanvasRenderer:
   m_ObjectHideFlags: 0
