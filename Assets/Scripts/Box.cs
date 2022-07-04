@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Analytics;
 using UnityEngine.SceneManagement;
@@ -24,12 +25,16 @@ public class Box : MonoBehaviour
 
     private Scene curScene;
 
+    private AnalyticsData analyticsData;
+
     public void Start()
     {
 
         contact2D.useLayerMask = true;
         contact2D.layerMask = sameBoxType;
         _gameManager = GameManager.Instance;
+        
+        analyticsData = AnalyticsData.instance;
     }
 
     // check is wallBox or not
@@ -125,14 +130,8 @@ public class Box : MonoBehaviour
 
             if (destroy)
             {
-
-                // Horizontal analytics
                 
-                Analytics.CustomEvent("boxDestroyedH", new Dictionary<string, object>
-                {
-                    { "num_boxes", collideNumber},
-                    {"level", SceneManager.GetActiveScene().name}
-                });
+                //TODO: add Horizontal analysis
                 
                 
                 destroying = true;
@@ -224,12 +223,8 @@ public class Box : MonoBehaviour
             {
                 destroying = true;
                 
-                // Vertical Analytics
-                Analytics.CustomEvent("boxDestroyedV", new Dictionary<string, object>
-                {
-                    { "num_boxes", collideNumber},
-                    {"level", SceneManager.GetActiveScene().name}
-                });
+                // TODO: add Vertical Analytics
+                
 
                 if (collisionList[0].gameObject.layer == 7) //box1
                 {
@@ -270,7 +265,7 @@ public class Box : MonoBehaviour
                         _gameManager.showBombPlus(1);
                         //GlobalVariables.P1MatchCount -= 2;
 
-                        _gameManager.gainBomb(1);
+                        analyticsData.gainBomb(1);
                     }
                 }
                 else
@@ -282,7 +277,7 @@ public class Box : MonoBehaviour
                         _gameManager.showBombPlus(2);
                         //GlobalVariables.P2MatchCount -= 2;
 
-                        _gameManager.gainBomb(2);
+                        analyticsData.gainBomb(2);
                     }
 
 

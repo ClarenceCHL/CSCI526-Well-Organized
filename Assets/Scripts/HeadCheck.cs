@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Analytics;
 using UnityEngine.SceneManagement;
 
 public class HeadCheck : MonoBehaviour
@@ -35,13 +34,7 @@ public class HeadCheck : MonoBehaviour
                 player = 2;
             }
             
-            Analytics.CustomEvent("lostHP", new Dictionary<string, object>
-            {
-                {"level", SceneManager.GetActiveScene().name},
-                {"reason", "HitByBox"},
-                {"Player", player}
-            });
-            
+           //TODO: add hit by box analysis here
         }
 
         

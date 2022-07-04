@@ -14,8 +14,11 @@ public class Timer : MonoBehaviour
     private bool timerGoing;
     private float elapsedTime;
 
+    private Analytics analytics;
+
     private void Awake()
     {
+        analytics = Analytics.instance;
         instance = this;
     }
 
@@ -35,11 +38,7 @@ public class Timer : MonoBehaviour
 
     public void EndTimer()
     {
-        Analytics.CustomEvent("level&time", new Dictionary<string, object>
-        {
-            {"DieTime", TimeSpan.FromSeconds(elapsedTime)},
-            {"level", SceneManager.GetActiveScene().name}
-        });
+        analytics.updateTimer(elapsedTime);
         timerGoing = false;
     }
 

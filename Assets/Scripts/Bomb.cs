@@ -38,12 +38,7 @@ public class Bomb : MonoBehaviour
                 {
                     GameManager.Instance.lostHP(1);
                     
-                    Analytics.CustomEvent("lostHP", new Dictionary<string, object>
-                    {
-                        {"level", SceneManager.GetActiveScene().name},
-                        {"reason", "HitByBomb"},
-                        {"Player", 1}
-                    });
+                    //TODO: add hit by bomb analysis
                 }
                
 
@@ -56,12 +51,7 @@ public class Bomb : MonoBehaviour
                 {
                     GameManager.Instance.lostHP(2);
                     
-                    Analytics.CustomEvent("lostHP", new Dictionary<string, object>
-                    {
-                        {"level", SceneManager.GetActiveScene().name},
-                        {"reason", "HitByBomb"},
-                        {"Player", 2}
-                    });
+                    //TODO: add hit by bomb analysis
                 }
 
             }
