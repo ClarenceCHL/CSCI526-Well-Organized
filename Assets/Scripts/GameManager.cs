@@ -284,9 +284,8 @@ public class GameManager : MonoBehaviour
         analytics.updateScore(player1Score, player2Score);
         analytics.updateLevel(curScene.name);
         analytics.getAnalyticData();
-        analytics.Send();
-
-    }
+        
+        }
 
 
     /*public List<Box> checkMatched(Box box)
