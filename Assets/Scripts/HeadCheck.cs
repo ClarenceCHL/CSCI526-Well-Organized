@@ -14,7 +14,7 @@ public class HeadCheck : MonoBehaviour
        // enableInput = false;
     }*/
 
-
+    
     private void OnTriggerEnter2D(Collider2D other)
     {
         string name = this.GetComponentInParent<Transform>().GetComponentInParent<Transform>().name;
@@ -33,8 +33,7 @@ public class HeadCheck : MonoBehaviour
                 GameManager.Instance.lostHP(2);
                 player = 2;
             }
-            
-           //TODO: add hit by box analysis here
+            AnalyticsData.instance.hitByBox(player);
         }
 
         

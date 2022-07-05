@@ -131,18 +131,17 @@ public class Box : MonoBehaviour
             if (destroy)
             {
                 
-                //TODO: add Horizontal analysis
-                
-                
                 destroying = true;
 
                 if (collisionList[0].gameObject.layer == 7) //box1
                 {
                     isPlayer1 = true;
+                    analyticsData.updateBoxELM(1, collideNumber);
                 }
                 else
                 {
                     isPlayer1 = false;
+                    analyticsData.updateBoxELM(2, collideNumber);
                 }
 
 
@@ -169,6 +168,7 @@ public class Box : MonoBehaviour
                     if (GlobalVariables.P1MatchCount > 0 && GlobalVariables.P1MatchCount % 2 == 0)
                     {
                         player1.P1BombCount++;
+                        analyticsData.gainBomb(1);
                         _gameManager.showBombPlus(1);
                         //GlobalVariables.P1MatchCount -= 2;
                     }
@@ -187,6 +187,7 @@ public class Box : MonoBehaviour
                     if (GlobalVariables.P2MatchCount > 0 && GlobalVariables.P2MatchCount % 2 == 0)
                     {
                         player2.P2BombCount++;
+                        analyticsData.gainBomb(2);
                         _gameManager.showBombPlus(2);
                         //GlobalVariables.P2MatchCount -= 2;
 
@@ -223,18 +224,18 @@ public class Box : MonoBehaviour
             {
                 destroying = true;
                 
-                // TODO: add Vertical Analytics
                 
 
                 if (collisionList[0].gameObject.layer == 7) //box1
                 {
                     isPlayer1 = true;
+                    analyticsData.updateBoxELM(1, collideNumber);
                 }
                 else
                 {
                     isPlayer1 = false;
+                    analyticsData.updateBoxELM(2, collideNumber);
                 }
-
 
                 for (int i = 0; i < collideNumber; i++)
                 {
@@ -262,10 +263,12 @@ public class Box : MonoBehaviour
                     if (GlobalVariables.P1MatchCount > 0 && GlobalVariables.P1MatchCount % 2 == 0)
                     {
                         player1.P1BombCount++;
+                        analyticsData.gainBomb(1);
+                        
                         _gameManager.showBombPlus(1);
                         //GlobalVariables.P1MatchCount -= 2;
 
-                        analyticsData.gainBomb(1);
+                        
                     }
                 }
                 else
@@ -274,10 +277,12 @@ public class Box : MonoBehaviour
                     if (GlobalVariables.P2MatchCount > 0 && GlobalVariables.P2MatchCount % 2 == 0)
                     {
                         player2.P2BombCount++;
+                        analyticsData.gainBomb(2);
+                        
                         _gameManager.showBombPlus(2);
                         //GlobalVariables.P2MatchCount -= 2;
 
-                        analyticsData.gainBomb(2);
+                        
                     }
 
 

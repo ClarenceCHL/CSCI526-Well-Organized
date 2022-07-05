@@ -72,6 +72,7 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         _instance = this;
+
         //grid = new Box[width, height];
     }
 
@@ -106,6 +107,9 @@ public class GameManager : MonoBehaviour
         P2RespawnPoint = new Vector3(3.5f, 5.0f, 0.0f);
         width = parentCanvas.sizeDelta.x;
         height = parentCanvas.sizeDelta.y;
+        
+        analytics = Analytics.instance;
+        analyticsData  = AnalyticsData.instance;
     }
 
     // Update is called once per frame
@@ -138,13 +142,14 @@ public class GameManager : MonoBehaviour
 
     void dropBox()
     {
+        //Include the maximum
         float xPos = Random.Range(-4, 5) - 0.5f;
-
+        //Exclude the maximum
         int boxType = Random.Range(1, 3);
 
         GameObject newBox;
-
-        //TODO: add box position analytics here
+        
+        analyticsData.updateBoxPosition(boxType, (int)(xPos+4.5));
 
         if (boxType == 1)
         {
@@ -274,6 +279,7 @@ public class GameManager : MonoBehaviour
         {
             GameOverScreen2.Setup();
         }
+        analytics.updateTimer(Timer.instance.elapsedTime);
         analytics.updateWinner(i);
         analytics.updateScore(player1Score, player2Score);
         analytics.updateLevel(curScene.name);

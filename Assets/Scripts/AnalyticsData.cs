@@ -12,6 +12,12 @@ public class AnalyticsData:MonoBehaviour
     public int player2HitByBox;
     public int player1DamagedByBomb;
     public int player2DamagedByBomb;
+    //Box Position Data
+    public int[] box1Position;
+    public int[] box2Position;
+    //Box Elimination Data
+    public int[] box1ELM;
+    public int[] box2ELM;
     
     public static AnalyticsData instance;
     void Awake()
@@ -30,6 +36,12 @@ public class AnalyticsData:MonoBehaviour
         player2HitByBox = 0;
         player1DamagedByBomb = 0;
         player2DamagedByBomb = 0;
+
+        box1Position = new int[10];
+        box2Position = new int[10];
+
+        box1ELM = new int[3];
+        box2ELM = new int[3];
     }
 
     public void gainBomb(int playerID)
@@ -42,7 +54,6 @@ public class AnalyticsData:MonoBehaviour
         {
             player2BombGained++;
         }
-        Debug.Log("gainBomb");
     }
     
     public void useBomb(int playerID)
@@ -54,7 +65,6 @@ public class AnalyticsData:MonoBehaviour
         {
             player2BombUsed += 1;
         }
-        Debug.Log("useBomb");
     }
 
     public void hitByBox(int playerID)
@@ -76,6 +86,44 @@ public class AnalyticsData:MonoBehaviour
         } else
         {
             player2DamagedByBomb += 1;
+        }
+    }
+
+    public void updateBoxPosition(int boxType, int position)
+    {
+        int[] boxPosition;
+        if (boxType == 1)
+        {
+            boxPosition = box1Position;
+        }
+        else
+        {
+            boxPosition = box2Position;
+        }
+
+        boxPosition[position]++;
+
+    }
+
+    public void updateBoxELM(int boxType, int num)
+    {
+        int[] boxELM;
+        if (boxType == 1)
+        {
+            boxELM = box1ELM;
+        }
+        else
+        {
+            boxELM = box2ELM;
+        }
+
+        if (num <= 5)
+        {
+            boxELM[num - 3] += 1;
+        }
+        else
+        {
+            boxELM[2] += 1;
         }
     }
 

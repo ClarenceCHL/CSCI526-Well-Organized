@@ -25,7 +25,7 @@ public class PlayerController2 : MonoBehaviour
     public Animator animator;
     private float horizontalInput;
 
-    public AnalyticsData analyticsData;
+    private AnalyticsData analyticsData;
 
     // Start is called before the first frame update
     void Start()

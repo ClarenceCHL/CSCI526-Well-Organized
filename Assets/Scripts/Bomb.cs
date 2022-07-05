@@ -37,8 +37,8 @@ public class Bomb : MonoBehaviour
                 if(this.gameObject.name == "P2_Bomb(Clone)")
                 {
                     GameManager.Instance.lostHP(1);
-                    
-                    //TODO: add hit by bomb analysis
+
+                    AnalyticsData.instance.damageByBomb(1);
                 }
                
 
@@ -50,8 +50,8 @@ public class Bomb : MonoBehaviour
                 if (this.gameObject.name == "P1_Bomb(Clone)")
                 {
                     GameManager.Instance.lostHP(2);
-                    
-                    //TODO: add hit by bomb analysis
+
+                    AnalyticsData.instance.damageByBomb(2);
                 }
 
             }
