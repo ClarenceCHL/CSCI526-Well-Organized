@@ -33,15 +33,13 @@ public class Analytics: MonoBehaviour
     private string[] box1ELMEntries;
     private string[] box2ELMEntries;
     
-    
-
-    private string PLAYER_DATA_URL =
+    [SerializeField] private string PLAYER_DATA_URL =
         "https://docs.google.com/forms/u/0/d/e/1FAIpQLSdDPDzgZ5pVaZPUAQBmfsAvCQfgPz_pUNfJV13iN67oGIf6Qw/formResponse";
 
-    private string BOX_DATA_URL =
+    [SerializeField] private string BOX_DATA_URL =
         "https://docs.google.com/forms/u/0/d/e/1FAIpQLSc0pPSM5fttOb21BTtNT-us2pGe-kSv5hpHsOiSHMpIabeDTg/formResponse";
 
-    private string BOX_ELM_URL =
+    [SerializeField] private string BOX_ELM_URL =
         "https://docs.google.com/forms/u/0/d/e/1FAIpQLSdQOOu4w1BC8qzwpvt41PX-RSVeTakxSamCAqEOK0X3_vMT1w/formResponse";
 
     private void Awake()
