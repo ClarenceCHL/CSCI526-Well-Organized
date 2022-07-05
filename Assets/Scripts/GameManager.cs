@@ -283,7 +283,7 @@ public class GameManager : MonoBehaviour
         analytics.updateWinner(i);
         analytics.updateScore(player1Score, player2Score);
         analytics.updateLevel(curScene.name);
-        analytics.getAnalyticData();
+        
         
         }
 

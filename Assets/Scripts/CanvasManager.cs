@@ -7,6 +7,8 @@ public class CanvasManager : MonoBehaviour
 {
     public void ReturnButtom()
     {
+        Analytics.instance.updateLevel(SceneManager.GetActiveScene().name);
+        
         SceneManager.LoadScene("LevelSelect");
         Time.timeScale = 1.0f;
         GlobalVariables.P1MatchCount = 0;

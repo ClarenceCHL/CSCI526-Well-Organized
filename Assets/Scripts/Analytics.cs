@@ -178,6 +178,8 @@ public class Analytics: MonoBehaviour
     
     public void Send()
     {
+        getAnalyticData();
+        
         StartCoroutine(PostPlayerData());
         StartCoroutine(PostBoxData());
         StartCoroutine(PostBoxELMData());
