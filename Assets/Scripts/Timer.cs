@@ -13,12 +13,8 @@ public class Timer : MonoBehaviour
     private TimeSpan timePlaying;
     private bool timerGoing;
     private float elapsedTime;
-
-    private Analytics analytics;
-
     private void Awake()
     {
-        analytics = Analytics.instance;
         instance = this;
     }
 
@@ -38,7 +34,6 @@ public class Timer : MonoBehaviour
 
     public void EndTimer()
     {
-        analytics.updateTimer(elapsedTime);
         timerGoing = false;
     }
 

@@ -26,16 +26,13 @@ public class PlayerController : MonoBehaviour
     private float horizontalInput;
 
     public Animator animator; 
-    
-    public AnalyticsData analyticsData;
+
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         Timer.instance.BeginTimer();
-        
-        analyticsData = AnalyticsData.instance;
     }
 
 
@@ -55,8 +52,6 @@ public class PlayerController : MonoBehaviour
         {
             Debug.Log("Bomb");
             layBomb = true;
-            
-            analyticsData.useBomb(1);
             P1BombCount--; 
         }
 

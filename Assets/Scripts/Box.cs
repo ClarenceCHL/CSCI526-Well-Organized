@@ -24,17 +24,12 @@ public class Box : MonoBehaviour
     private bool matched;
 
     private Scene curScene;
-
-    private AnalyticsData analyticsData;
-
     public void Start()
     {
 
         contact2D.useLayerMask = true;
         contact2D.layerMask = sameBoxType;
         _gameManager = GameManager.Instance;
-        
-        analyticsData = AnalyticsData.instance;
     }
 
     // check is wallBox or not
@@ -265,7 +260,6 @@ public class Box : MonoBehaviour
                         _gameManager.showBombPlus(1);
                         //GlobalVariables.P1MatchCount -= 2;
 
-                        analyticsData.gainBomb(1);
                     }
                 }
                 else
@@ -276,8 +270,6 @@ public class Box : MonoBehaviour
                         player2.P2BombCount++;
                         _gameManager.showBombPlus(2);
                         //GlobalVariables.P2MatchCount -= 2;
-
-                        analyticsData.gainBomb(2);
                     }
 
 

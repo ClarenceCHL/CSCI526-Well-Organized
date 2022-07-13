@@ -66,9 +66,6 @@ public class GameManager : MonoBehaviour
 
     public static GameManager Instance { get => _instance; set => _instance = value; }
 
-    private Analytics analytics;
-    private AnalyticsData analyticsData;
-    
     private void Awake()
     {
         _instance = this;
@@ -274,11 +271,6 @@ public class GameManager : MonoBehaviour
         {
             GameOverScreen2.Setup();
         }
-        analytics.updateWinner(i);
-        analytics.updateScore(player1Score, player2Score);
-        analytics.updateLevel(curScene.name);
-        analytics.getAnalyticData();
-        analytics.Send();
 
     }
 
