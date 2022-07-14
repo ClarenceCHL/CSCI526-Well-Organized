@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-
+using TMPro;
 public class LevelSelect : MonoBehaviour
 {
     public void StartLevel1()
@@ -62,4 +62,8 @@ public class LevelSelect : MonoBehaviour
         GlobalVariables.P1MatchCount = 0;
     }
 
+    public void BackBtn()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
 }
