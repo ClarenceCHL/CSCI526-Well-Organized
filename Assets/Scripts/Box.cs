@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Analytics;
 using UnityEngine.SceneManagement;
@@ -24,6 +23,7 @@ public class Box : MonoBehaviour
     private bool matched;
 
     private Scene curScene;
+
     public void Start()
     {
 
@@ -43,7 +43,7 @@ public class Box : MonoBehaviour
         if (matched) return; //matched boxes waiting to be destroyed can't be pushed
 
         //return if box is still moving
-        if (Mathf.Abs(GetComponent<Rigidbody2D>().velocity.y) > 0.1f)
+        if (Mathf.Abs(GetComponent<Rigidbody2D>().velocity.y) > 0.01f)
             return;
 
         if (dir != null)
@@ -125,8 +125,14 @@ public class Box : MonoBehaviour
 
             if (destroy)
             {
+
+                // Horizontal analytics
                 
-                //TODO: add Horizontal analysis
+                Analytics.CustomEvent("boxDestroyedH", new Dictionary<string, object>
+                {
+                    { "num_boxes", collideNumber},
+                    {"level", SceneManager.GetActiveScene().name}
+                });
                 
                 
                 destroying = true;
@@ -143,6 +149,7 @@ public class Box : MonoBehaviour
 
                 for (int i = 0; i < collideNumber; i++)
                 {
+                    collisionList[i].gameObject.GetComponent<SpriteRenderer>().material.color = new Color(0.5f, 0.5f, 0.5f, 0.5f); //change color 
                     Destroy(collisionList[i].gameObject, 1.0f);
                     if (contact2D.layerMask.value == 128)
                     {
@@ -209,7 +216,7 @@ public class Box : MonoBehaviour
                 Rigidbody2D rb = collisionList[i].GetComponent<Rigidbody2D>();
                 // Debug.Log(rb.velocity);
 
-                if (Mathf.Abs(rb.velocity.y) > 0.1f)
+                if (Mathf.Abs(rb.velocity.y) > 0.01f)
                     destroy = false;    //so box doesn't get destroyed while dropping
 
             }
@@ -218,8 +225,12 @@ public class Box : MonoBehaviour
             {
                 destroying = true;
                 
-                // TODO: add Vertical Analytics
-                
+                // Vertical Analytics
+                Analytics.CustomEvent("boxDestroyedV", new Dictionary<string, object>
+                {
+                    { "num_boxes", collideNumber},
+                    {"level", SceneManager.GetActiveScene().name}
+                });
 
                 if (collisionList[0].gameObject.layer == 7) //box1
                 {
@@ -235,6 +246,7 @@ public class Box : MonoBehaviour
                 {
                     if (collisionList[i].gameObject != null)  //avoid double deleting
                     {
+                        collisionList[i].gameObject.GetComponent<SpriteRenderer>().material.color = new Color(0.5f, 0.5f, 0.5f, 1.0f); //change color 
 
                         Destroy(collisionList[i].gameObject, 1.0f);
                         if (contact2D.layerMask.value == 128)
@@ -260,6 +272,7 @@ public class Box : MonoBehaviour
                         _gameManager.showBombPlus(1);
                         //GlobalVariables.P1MatchCount -= 2;
 
+                        _gameManager.gainBomb(1);
                     }
                 }
                 else
@@ -270,6 +283,8 @@ public class Box : MonoBehaviour
                         player2.P2BombCount++;
                         _gameManager.showBombPlus(2);
                         //GlobalVariables.P2MatchCount -= 2;
+
+                        _gameManager.gainBomb(2);
                     }
 
 

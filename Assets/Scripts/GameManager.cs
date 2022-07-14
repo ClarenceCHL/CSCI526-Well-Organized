@@ -4,10 +4,20 @@ using UnityEngine;
 using UnityEngine.Analytics;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
     //[SerializeField] Box box;
+
+    public Image p1_1; //life
+    public Image p1_2;
+    public Image p1_3;
+
+    public Image p2_1; 
+    public Image p2_2;
+    public Image p2_3;
+
 
     private Scene curScene;
 
@@ -17,11 +27,11 @@ public class GameManager : MonoBehaviour
     public GameObject player1;
     public GameObject player2;
 
-    public Text P1Score;
-    public Text P2Score;
+    public TextMeshProUGUI P1Score;
+    public TextMeshProUGUI P2Score;
 
-    public Text P1HP;
-    public Text P2HP;
+   // public Text P1HP;
+   // public Text P2HP;
 
     private float dropRate = 2.0f; //drop a box every 2 seconds
     private float nextDrop = 0.0f;
@@ -31,6 +41,12 @@ public class GameManager : MonoBehaviour
 
     private int player1HP;
     private int player2HP;
+    
+    //for analytics
+    private int player1BombGained;
+    private int player2BombGained;
+    private int player1BombUsed;
+    private int player2BombUsed;
     
     private Vector3 P1RespawnPoint;
     private Vector3 P2RespawnPoint;
@@ -43,8 +59,7 @@ public class GameManager : MonoBehaviour
     public GameObject P1BombAdd;
     public GameObject P2BombAdd;
     public GameObject TeachingBombAdd;
-    
-    
+
     //public GameObject shoko;
     //public GameObject player;
     //public GameObject mainCamera;
@@ -61,6 +76,8 @@ public class GameManager : MonoBehaviour
     //public int height = 9;
 
     //static Box[,] grid;
+
+    public PlayerController playerController;
 
     private static GameManager _instance;
 
@@ -97,8 +114,8 @@ public class GameManager : MonoBehaviour
             }
 
         }
-        P1HP.text = "P1 HP: " + player1HP;
-        P2HP.text = "P2 HP: " + player2HP;
+       // P1HP.text = "P1 HP: " + player1HP;
+       // P2HP.text = "P2 HP: " + player2HP;
         P1RespawnPoint = new Vector3(-3.5f, 5.0f, 0.0f);
         P2RespawnPoint = new Vector3(3.5f, 5.0f, 0.0f);
         width = parentCanvas.sizeDelta.x;
@@ -108,7 +125,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-
+      
         time += Time.deltaTime;
 
         
@@ -135,13 +152,16 @@ public class GameManager : MonoBehaviour
 
     void dropBox()
     {
-        float xPos = Random.Range(-4, 5) - 0.5f;
+        float xPos = Random.Range(-4, 6) - 0.5f;
 
         int boxType = Random.Range(1, 3);
 
         GameObject newBox;
 
-        //TODO: add box position analytics here
+        AnalyticsResult boxPosition = Analytics.CustomEvent("boxPosition", new Dictionary<string, object>
+        {
+            { SceneManager.GetActiveScene().name, xPos + boxType}
+        });
 
         if (boxType == 1)
         {
@@ -163,12 +183,13 @@ public class GameManager : MonoBehaviour
         if(i == 1)
         {
             player1Score += 10;
-            P1Score.text = "P1 Score: " + player1Score;
+            //P1Score.text = "P1 Score: " + player1Score;
+            P1Score.text = "" + player1Score;
         }
         else if(i == 2)
         {
             player2Score += 10;
-            P2Score.text = "P2 Score: " + player2Score;
+            P2Score.text = ""+ player2Score;
         }
     }
 
@@ -187,7 +208,19 @@ public class GameManager : MonoBehaviour
             {
                 StartCoroutine(player1Respawn(2.0f));
                 player1HP--;
-;               P1HP.text = "P1 HP: " + player1HP;
+;              // P1HP.text = "P1 HP: " + player1HP;
+
+                if(p1_3.enabled)
+                {
+                    p1_3.enabled = false;
+                }else if(p1_2.enabled)
+                {
+                    p1_2.enabled = false;
+                }
+                else
+                {
+                    p1_1.enabled = false;
+                }
             }
             
         }
@@ -197,10 +230,46 @@ public class GameManager : MonoBehaviour
             {
                 StartCoroutine(player2Respawn(2.0f));
                 player2HP--;
-                P2HP.text = "P2 HP: " + player2HP;
+                // P2HP.text = "P2 HP: " + player2HP;
+
+
+                if (p2_3.enabled)
+                {
+                    p2_3.enabled = false;
+                }
+                else if (p2_2.enabled)
+                {
+                    p2_2.enabled = false;
+                }
+                else
+                {
+                    p2_1.enabled = false;
+                }
             }
         }
         
+    }
+
+    public void gainBomb(int playerID)
+    {
+        if (playerID == 1)
+        {
+            player1BombGained += 1;
+        } else
+        {
+            player2BombGained += 1;
+        }
+    }
+
+    public void useBomb(int playerID)
+    {
+        if (playerID == 1)
+        {
+            player1BombUsed += 1;
+        } else
+        {
+            player2BombUsed += 1;
+        }
     }
 
     IEnumerator playerBombAdd(int i)
@@ -261,19 +330,66 @@ public class GameManager : MonoBehaviour
     {
         Timer.instance.EndTimer();
         Time.timeScale = 0;
+
+        int winnerScore;
+        int winnerBombGained;
+        int winnerBombUsed;
         
+        int loserScore;
+        int loserBombGained;
+        int loserBombUsed;
         
         if (i == 1)
         {
+            AnalyticsResult winPlayer = Analytics.CustomEvent("winPlayer", new Dictionary<string, object>
+        {
+            { "P1 win", SceneManager.GetActiveScene().name}
+        });
+
+            winnerScore = player1Score;
+            winnerBombGained = player1BombGained;
+            winnerBombUsed = player1BombUsed;
+            
+            loserScore = player2Score;
+            loserBombGained = player2BombGained;
+            loserBombUsed = player2BombUsed;
+            
             GameOverScreen1.Setup();
         }
         else
         {
+            AnalyticsResult winPlayer = Analytics.CustomEvent("winPlayer", new Dictionary<string, object>
+        {
+            { "P2 win", SceneManager.GetActiveScene().name}
+        });
+            winnerScore = player2Score;
+            winnerBombGained = player2BombGained;
+            winnerBombUsed = player2BombUsed;
+            
+            loserScore = player1Score;
+            loserBombGained = player1BombGained;
+            loserBombUsed = player1BombUsed;
             GameOverScreen2.Setup();
         }
 
+        Debug.Log(winnerBombGained);
+        Debug.Log(loserBombGained);
+        Analytics.CustomEvent("score&win", new Dictionary<string, object>
+        {
+            { "winnerScore", winnerScore},
+            {"loserScore", loserScore}
+        });
+        
+        Analytics.CustomEvent("bomb&win", new Dictionary<string, object>
+        {
+            {"winnerGainedBombs", winnerBombGained},
+            {"winnerUsedBomb", winnerBombUsed},
+            {"loserGainedBombs", loserBombGained},
+            {"loserUsedBomb", loserBombUsed}
+        });
+        
+        
     }
-
 
     /*public List<Box> checkMatched(Box box)
     {

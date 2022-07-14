@@ -13,6 +13,7 @@ public class Timer : MonoBehaviour
     private TimeSpan timePlaying;
     private bool timerGoing;
     private float elapsedTime;
+
     private void Awake()
     {
         instance = this;
@@ -34,6 +35,11 @@ public class Timer : MonoBehaviour
 
     public void EndTimer()
     {
+        Analytics.CustomEvent("level&time", new Dictionary<string, object>
+        {
+            {"DieTime", TimeSpan.FromSeconds(elapsedTime)},
+            {"level", SceneManager.GetActiveScene().name}
+        });
         timerGoing = false;
     }
 

@@ -8,7 +8,7 @@ public class Bomb : MonoBehaviour
 {
     public Animator animator; 
     private ContactFilter2D contact2D;
-    private Collider2D[] collisionList = new Collider2D[5];
+    private Collider2D[] collisionList = new Collider2D[8];
 
     // Start is called before the first frame update
     void Start()
@@ -37,6 +37,13 @@ public class Bomb : MonoBehaviour
                 if(this.gameObject.name == "P2_Bomb(Clone)")
                 {
                     GameManager.Instance.lostHP(1);
+                    
+                    Analytics.CustomEvent("lostHP", new Dictionary<string, object>
+                    {
+                        {"level", SceneManager.GetActiveScene().name},
+                        {"reason", "HitByBomb"},
+                        {"Player", 1}
+                    });
                 }
                
 
@@ -48,6 +55,13 @@ public class Bomb : MonoBehaviour
                 if (this.gameObject.name == "P1_Bomb(Clone)")
                 {
                     GameManager.Instance.lostHP(2);
+                    
+                    Analytics.CustomEvent("lostHP", new Dictionary<string, object>
+                    {
+                        {"level", SceneManager.GetActiveScene().name},
+                        {"reason", "HitByBomb"},
+                        {"Player", 2}
+                    });
                 }
 
             }

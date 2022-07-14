@@ -12,4 +12,9 @@ public class CanvasManager : MonoBehaviour
         GlobalVariables.P1MatchCount = 0;
         GlobalVariables.P2MatchCount = 0;
     }
+
+    public void RestartButton()
+    {
+        SceneManager.LoadScene( SceneManager.GetActiveScene().name);
+    }
 }

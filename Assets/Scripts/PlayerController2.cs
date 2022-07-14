@@ -24,12 +24,15 @@ public class PlayerController2 : MonoBehaviour
 
     public Animator animator;
     private float horizontalInput;
+    
+    GameManager _gameManager;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         Timer.instance.BeginTimer();
+        _gameManager = GameManager.Instance;
     }
 
 
@@ -42,14 +45,15 @@ public class PlayerController2 : MonoBehaviour
         animator.SetBool("isLeft", false);
         animator.SetBool("isRight", false);
 
-        BombNumber.text = "BOMBS: " + P2BombCount;
+        BombNumber.text = "x " + P2BombCount;
 
         if (Input.GetKeyDown(KeyCode.RightShift) && P2BombCount > 0)
         {
-            Debug.Log("Bomb");
+           // Debug.Log("Bomb");
             layBomb = true;
 
             P2BombCount--;
+            _gameManager.useBomb(2);
         }
 
 
