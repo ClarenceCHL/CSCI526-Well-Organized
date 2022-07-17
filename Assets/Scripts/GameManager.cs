@@ -60,6 +60,8 @@ public class GameManager : MonoBehaviour
     public GameObject P2BombAdd;
     public GameObject TeachingBombAdd;
 
+    public bool spawn = true;
+
     //public GameObject shoko;
     //public GameObject player;
     //public GameObject mainCamera;
@@ -131,7 +133,7 @@ public class GameManager : MonoBehaviour
         
         if (curScene.name != "teaching1" && curScene.name != "teaching2")
         {
-            if (time > nextDrop)
+            if (time > nextDrop && spawn)
             {
                 dropBox();
                 nextDrop = time + dropRate;
