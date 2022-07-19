@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Analytics;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
@@ -43,10 +42,10 @@ public class GameManager : MonoBehaviour
     private int player2HP;
     
     //for analytics
-    private int player1BombGained;
-    private int player2BombGained;
-    private int player1BombUsed;
-    private int player2BombUsed;
+    public int player1BombGained;
+    public int player2BombGained;
+    public int player1BombUsed;
+    public int player2BombUsed;
     
     private Vector3 P1RespawnPoint;
     private Vector3 P2RespawnPoint;
@@ -159,11 +158,7 @@ public class GameManager : MonoBehaviour
         int boxType = Random.Range(1, 3);
 
         GameObject newBox;
-
-        AnalyticsResult boxPosition = Analytics.CustomEvent("boxPosition", new Dictionary<string, object>
-        {
-            { SceneManager.GetActiveScene().name, xPos + boxType}
-        });
+        
 
         if (boxType == 1)
         {
@@ -332,65 +327,18 @@ public class GameManager : MonoBehaviour
     {
         Timer.instance.EndTimer();
         Time.timeScale = 0;
-
-        int winnerScore;
-        int winnerBombGained;
-        int winnerBombUsed;
         
-        int loserScore;
-        int loserBombGained;
-        int loserBombUsed;
         
         if (i == 1)
         {
-            AnalyticsResult winPlayer = Analytics.CustomEvent("winPlayer", new Dictionary<string, object>
-        {
-            { "P1 win", SceneManager.GetActiveScene().name}
-        });
-
-            winnerScore = player1Score;
-            winnerBombGained = player1BombGained;
-            winnerBombUsed = player1BombUsed;
-            
-            loserScore = player2Score;
-            loserBombGained = player2BombGained;
-            loserBombUsed = player2BombUsed;
-            
             GameOverScreen1.Setup();
         }
         else
         {
-            AnalyticsResult winPlayer = Analytics.CustomEvent("winPlayer", new Dictionary<string, object>
-        {
-            { "P2 win", SceneManager.GetActiveScene().name}
-        });
-            winnerScore = player2Score;
-            winnerBombGained = player2BombGained;
-            winnerBombUsed = player2BombUsed;
             
-            loserScore = player1Score;
-            loserBombGained = player1BombGained;
-            loserBombUsed = player1BombUsed;
             GameOverScreen2.Setup();
         }
 
-        Debug.Log(winnerBombGained);
-        Debug.Log(loserBombGained);
-        Analytics.CustomEvent("score&win", new Dictionary<string, object>
-        {
-            { "winnerScore", winnerScore},
-            {"loserScore", loserScore}
-        });
-        
-        Analytics.CustomEvent("bomb&win", new Dictionary<string, object>
-        {
-            {"winnerGainedBombs", winnerBombGained},
-            {"winnerUsedBomb", winnerBombUsed},
-            {"loserGainedBombs", loserBombGained},
-            {"loserUsedBomb", loserBombUsed}
-        });
-        
-        
     }
 
     /*public List<Box> checkMatched(Box box)
