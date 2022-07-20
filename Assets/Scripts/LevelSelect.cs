@@ -47,7 +47,14 @@ public class LevelSelect : MonoBehaviour
         Time.timeScale = 1.0f;
         GlobalVariables.P1MatchCount = 0;
     }
-	
+
+    public void StartTutorial()
+    {
+        SceneManager.LoadScene("Tutorial");
+        Time.timeScale = 1.0f;
+        GlobalVariables.P1MatchCount = 0;
+    }
+    
     public void StartTeachingLevel1()
     {
         SceneManager.LoadScene("teaching1");
