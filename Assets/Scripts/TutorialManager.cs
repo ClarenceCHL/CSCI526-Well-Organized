@@ -9,10 +9,17 @@ public class TutorialManager : MonoBehaviour
     GameManager instance;
     private static float WAIT_TIME = 6f;
     public float waitTime = WAIT_TIME;
+
+    public GameObject instructions;
+    public GameObject instructionButton;
+    
+    public GameObject mechanics;
+    public GameObject prevButton;
+    public GameObject mechanicButton;
     
     public GameObject[] popUps;
 
-    private int popUpIndex;
+    private int popUpIndex = -1;
 
     // objs in POP-UP 1
     public GameObject[] arrows;
@@ -26,6 +33,8 @@ public class TutorialManager : MonoBehaviour
     public GameObject position;
     public GameObject[] sampleBoxes;
 
+    //objs in POP-UP 4
+    public GameObject collider;
     //objs in POP-UP 7
     public GameObject button;
     
@@ -99,44 +108,20 @@ public class TutorialManager : MonoBehaviour
         }
         else if (popUpIndex == 2)
         {
-            // pure text explain how to get box elimination
+            // ask the player to avoid boxes and get one more elimination
             pushBox.SetActive(false);
             position.SetActive(false);
             
-            if (waitTime <= 0)
-            {
-                waitTime = WAIT_TIME;
-                popUpIndex++;
-            }
-            else
-            {
-                waitTime -= Time.deltaTime;
-            }
-        } 
-        else if (popUpIndex == 3)
-        {
-            // pure text explain the purpose of box elimination
-            if (waitTime <= 0)
-            {
-                waitTime = WAIT_TIME;
-                popUpIndex++;
-                
-            }
-            else
-            {
-                waitTime -= Time.deltaTime;
-            }
-        } 
-        else if (popUpIndex == 4)
-        {
-            // ask the player to avoid boxes and get one more elimination
             instance.spawn = true;
+            collider.SetActive(false);
+            Debug.Log(instance.player2BombGained);
+            
             if (instance.player2BombGained >= 1)
             {
                 popUpIndex++;
             }
         } 
-        else if (popUpIndex == 5)
+        else if (popUpIndex == 3)
         {
             // ask the player to throw the box
             if (Input.GetKeyDown(KeyCode.RightShift))
@@ -145,10 +130,42 @@ public class TutorialManager : MonoBehaviour
                 instance.spawn = false;
             }
         }
-        else if (popUpIndex == 6)
+        else if (popUpIndex == 4)
         {
             // end of this tutorial, display of next button
             button.SetActive(true);
+        }
+    }
+
+    public void loadInstruction()
+    {
+        instructions.SetActive(false);
+        instructionButton.SetActive(false);
+        
+        mechanics.SetActive(true);
+        mechanicButton.SetActive(true);
+        prevButton.SetActive(true);
+    }
+
+    public void loadPrev()
+    {
+        instructions.SetActive(true);
+        instructionButton.SetActive(true);
+        mechanics.SetActive(false);
+        mechanicButton.SetActive(false);
+        prevButton.SetActive(false);
+    }
+    
+    public void disableInstruction()
+    {
+        mechanics.SetActive(false);
+        mechanicButton.SetActive(false);
+        prevButton.SetActive(false);
+        popUpIndex = 0;
+        
+        for (int i = 0; i < arrows.Length; i++)
+        {
+            arrows[i].SetActive(true);
         }
     }
 }
