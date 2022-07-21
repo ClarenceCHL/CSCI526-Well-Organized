@@ -6801,6 +6801,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2718956830893811565, guid: b33bfb3416228412a81b16691cda32c2, type: 3}
+      propertyPath: m_Text
+      value: TUTORIAL 1 COMPLETED!
+      objectReference: {fileID: 0}
+    - target: {fileID: 2718956830893811565, guid: b33bfb3416228412a81b16691cda32c2, type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 60
+      objectReference: {fileID: 0}
     - target: {fileID: 2718956831432872362, guid: b33bfb3416228412a81b16691cda32c2, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: -1175
@@ -6808,6 +6816,14 @@ PrefabInstance:
     - target: {fileID: 2718956831432872362, guid: b33bfb3416228412a81b16691cda32c2, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 119
+      objectReference: {fileID: 0}
+    - target: {fileID: 2718956831955076724, guid: b33bfb3416228412a81b16691cda32c2, type: 3}
+      propertyPath: m_Text
+      value: 'Cool! You have completed tutorial 1. '
+      objectReference: {fileID: 0}
+    - target: {fileID: 2718956832105088456, guid: b33bfb3416228412a81b16691cda32c2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2718956832759882543, guid: b33bfb3416228412a81b16691cda32c2, type: 3}
       propertyPath: m_Pivot.x

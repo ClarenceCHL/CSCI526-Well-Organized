@@ -59,6 +59,8 @@ public class GameManager : MonoBehaviour
     public GameObject P2BombAdd;
     public GameObject TeachingBombAdd;
 
+    public GameObject teachingPanel;
+    
     public bool spawn = true;
 
     //public GameObject shoko;
@@ -335,7 +337,11 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            
+            string sceneName = SceneManager.GetActiveScene().name;
+            if (sceneName == "teaching1" || sceneName == "teaching2")
+            {
+                teachingPanel.SetActive(false);
+            }
             GameOverScreen2.Setup();
         }
 

@@ -104,9 +104,10 @@ public class TutorialManager : MonoBehaviour
             else
             {
                 throwBombText.SetActive(false);
-                nextLevelText.SetActive(true);
-                nextButton.SetActive(true);
-
+                //nextLevelText.SetActive(true);
+                //nextButton.SetActive(true);
+                
+                instance.GameOverScreen2.Setup();
                 Time.timeScale = 0;
             }
             
