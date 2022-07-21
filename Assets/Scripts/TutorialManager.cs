@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TutorialManager : MonoBehaviour
 {
@@ -168,5 +169,10 @@ public class TutorialManager : MonoBehaviour
         popUpIndex++;
         //prevButton.SetActive(false);
 
+    }
+
+    public void backToLevelSelect()
+    {
+        SceneManager.LoadScene("LevelSelect");
     }
 }
